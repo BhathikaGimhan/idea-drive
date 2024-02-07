@@ -1,12 +1,32 @@
+"use client";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
 import Image from "next/image";
-import { Inter } from "next/font/google";
 
-const inter = Inter({ subsets: ["latin"] });
+export default function Loading() {
+  const [loading, setLoading] = useState(false);
+  const router = useRouter();
+  useEffect(() => {
+    const startLoading = () => setLoading(true);
+    const stopLoading = () => setLoading(false);
 
-export default function Home() {
+    // Listen for router events to start and stop loading
+    router.events.on("routeChangeStart", startLoading);
+    router.events.on("routeChangeComplete", stopLoading);
+    router.events.on("routeChangeError", stopLoading);
+
+    // Remove event listeners on unmount
+    return () => {
+      router.events.off("routeChangeStart", startLoading);
+      router.events.off("routeChangeComplete", stopLoading);
+      router.events.off("routeChangeError", stopLoading);
+    };
+  }, []);
   return (
     <main
-      className={`flex min-h-fit flex-col -mt-52 items-center justify-between ${inter.className}`}
+      className={`flex min-h-fit flex-col  -mt-52 items-center justify-between ${
+        loading ? "" : "hidden"
+      } `}
     >
       <div className="relative flex place-items-center animate-pulse before:absolute before:h-[300px] before:w-full sm:before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-full sm:after:w-[240px] after:translate-x-0 after:bg-gradient-conic after:from-green-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-green-700/10 after:dark:from-green-900  after:dark:via-[#1c8b12]/40 before:lg:h-[360px]">
         <Image
