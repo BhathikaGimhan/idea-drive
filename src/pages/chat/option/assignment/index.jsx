@@ -13,6 +13,8 @@ const genAI = new GoogleGenerativeAI("AIzaSyArDcvm4OUPx45Uv-fVGulbsgQYPnIjuM8");
 
 export default function Assignment() {
   const [option, setOption] = useState("chat");
+  const [button, setButton] = useState(1);
+  const [showPdf, setShowPdf] = useState(false);
   const handleOptionClick = (option) => {
     setOption(option);
   };
@@ -31,7 +33,9 @@ export default function Assignment() {
       const doc = new jsPDF("p", "mm");
       doc.addImage(canvas, "PNG", 0, 0, imgWidth, imgHeight, "", "FAST");
       while (heightLeft >= 0) {
-        Image;
+        position = heightLeft - imgHeight;
+        x = position + 15;
+        position = x;
         doc.addPage();
         doc.addImage(
           canvas,
@@ -74,7 +78,6 @@ export default function Assignment() {
 
   const [message, setMessage] = useState("");
   const [value, setValue] = useState("");
-  const [button, setButton] = useState(1);
   const [chatHistory, setChatHistory] = useState([
     {
       role: "model",
@@ -82,8 +85,8 @@ export default function Assignment() {
     },
   ]);
   const genarate = async () => {
-    setButton(2);
     setValue("");
+    setButton(2);
     const model = genAI.getGenerativeModel({ model: "gemini-pro" });
     const chat = model.startChat({
       history: [
@@ -130,47 +133,40 @@ export default function Assignment() {
   };
   return (
     <div>
-      <div className="assignment-body flex top-16  w-full justify-center m-2">
-        <div className="pdf-view max-[1400px]:-ml-[30rem] ">
-          <div id="pdf" ref={reportTemplateRef}>
-            <MyDocument receivedValues={receivedValues} message={chatHistory} />
-          </div>
-        </div>
-        <div className="form-vew bg-white w-full h-full">
-          <div className=" mt-4 fixed">
-            <Front valuesToSend={valuesToSend} onSend={handleSend} />
-            <div className="button-section gap-2 flex flex-col">
-              <button
-                className={`px-2 py-1 border flex justify-center transition-all duration-400 hover:bg-green-950 !border-green-500 rounded-full `}
-                onClick={genarate}
-              >
-                Genarate PDF
-                {button === 2 ? (
-                  <Image
-                    className="ml-5 animate-spin"
-                    width={20}
-                    height={20}
-                    src={"/images/icon/loading.svg"}
-                    alt="Logo"
-                  />
-                ) : (
-                  ""
-                )}
-              </button>
-              <button
-                className={`px-2 py-1 ${
-                  button === 3 ? "" : "hidden"
-                } border transition-all duration-400 hover:bg-green-950 !border-green-500 rounded-full `}
-                onClick={handleDownloadPdf}
-              >
-                Download PDF
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-      {/* <div className="right bg-neutral-400 max-md:-left-[30rem]">
-            <div className="max-h-full -ml-24  -z-50">
+      <Image
+        src={"/images/assignment.webp"}
+        alt="svg icon"
+        className="absolute -right-10 -bottom-5 -z-[999999] opacity-10"
+        width={400}
+        height={100}
+      />
+      <div className=" relative">
+        <div className="form-veiw -mt-10  ">
+          {showPdf ? (
+            <div className="owal w-screen h-screen mt-4 fixed bg-[#0000009a]"></div>
+          ) : null}
+
+          <div
+            className={`right mt-7 fixed z-50 transition-all duration-700 ${
+              showPdf ? "left-0" : "-left-[530px]"
+            }  bg-neutral-400 h-[75vh] `}
+          >
+            <button
+              onClick={() => setShowPdf(!showPdf)}
+              type="button"
+              class="fixed ml-[33rem] mt-[15%] group shadow-[0_0_20px] rounded-e-xl !shadow-green-900 transition-all duration-500 hover:!shadow-green-500 w-10 h-20 bg-[#10151d]"
+            >
+              <Image
+                src={"/images/icon/right.svg"}
+                width={30}
+                height={30}
+                className={`group-hover:animate-pulse ${
+                  showPdf ? "rotate-180" : "rotate-0"
+                }`}
+                alt="icon"
+              />
+            </button>
+            <div className=" max-h-full overflow-auto -z-50">
               <div className="">
                 <div id="pdf" ref={reportTemplateRef}>
                   <MyDocument
@@ -181,10 +177,10 @@ export default function Assignment() {
               </div>
             </div>
           </div>
-          <div className="left w-full">
-            <div className="ml-[2vw] mt-4 fixed">
+          <div className="left ml-10  py-10">
+            <div className=" mt-0 right-0">
               <Front valuesToSend={valuesToSend} onSend={handleSend} />
-              <div className="button-section gap-2 flex flex-col">
+              <div className="button-section gap-2 mx-7 flex flex-col">
                 <button
                   className={`px-2 py-1 border flex justify-center transition-all duration-400 hover:bg-green-950 !border-green-500 rounded-full `}
                   onClick={genarate}
@@ -212,7 +208,9 @@ export default function Assignment() {
                 </button>
               </div>
             </div>
-          </div> */}
+          </div>
+        </div>
+      </div>
       <div className="chat-btn mb-0 z-50 !bg-[#10151d] absolute h-16 rounded-r-full  bottom-0 left-0 w-16 ">
         <div className="fixed bg-[#10151d] z-50 flex left-5 pr-10 w-full mt-6">
           <div className="flex flex-col gap-5 -mt-5 pr-5">

@@ -7,7 +7,7 @@ export default function Front({ valuesToSend, onSend }) {
   };
   return (
     <div>
-      <div className="front-body min-w-[80vw] ">
+      <div className="front-body min-w-full ">
         <div className="form mx-7 ">
           <div className=" ">
             <div className="flex flex-wrap  mb-6">
