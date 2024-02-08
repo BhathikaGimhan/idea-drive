@@ -9,6 +9,15 @@
   font-weight: lighter;
 }
 
+@media screen and (min-height: 852px) {
+  /* .assignment-body {
+    @apply -mt-40;
+  } */
+  .pdf-view-class {
+    @apply -mt-10 h-[70vh];
+  }
+}
+
 ::-webkit-scrollbar {
   width: 1px;
   margin-top: -20px;
