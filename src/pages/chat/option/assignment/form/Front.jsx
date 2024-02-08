@@ -7,9 +7,9 @@ export default function Front({ valuesToSend, onSend }) {
   };
   return (
     <div>
-      <div className="front-body">
-        <div className="form flex justify-center items-center w-full h-full m-auto">
-          <div className="w-full mx-3">
+      <div className="front-body min-w-[80vw] ">
+        <div className="form mx-7 ">
+          <div className=" ">
             <div className="flex flex-wrap  mb-6">
               <div className="w-full md:w-1/2 mb-6 md:mb-0">
                 <label
@@ -91,25 +91,27 @@ export default function Front({ valuesToSend, onSend }) {
                   placeholder="Assignment 1 or Name of Assignment"
                 />
                 <p className="text-green-300 text-xs italic">
-                  Make it as long and as crazy as you'd like
+                  Make it as long and as crazy as youlike
                 </p>
               </div>
             </div>
 
-            <div className="flex flex-col flex-wrap  -mx-3 mb-2">
-              <label
-                className="block uppercase tracking-wide text-green-50 text-xs font-bold mb-2"
-                for="grid-password"
-              >
-                Assignment Title
-              </label>
-              <textarea
-                className=" w-[48.3vw] bg-transparent text-green-50 border border-green-900 rounded py-3 px-4 mb-3 leading-tight focus:outline-none  focus:border-green-500"
-                value={valuesToSend?.ai || ""}
-                onChange={(e) => handleChange("ai", e.target.value)}
-                type="text"
-                placeholder="Assignment 1 or Name of Assignment"
-              />
+            <div className="flex flex-wrap -mx-3 mb-6">
+              <div className="w-full px-3">
+                <label
+                  className="block uppercase tracking-wide text-green-50 text-xs font-bold mb-2"
+                  for="grid-password"
+                >
+                  Assignment Title
+                </label>
+                <textarea
+                  className=" appearance-none block w-full bg-transparent text-green-50 border border-green-900 rounded py-3 px-4 mb-3 leading-tight focus:outline-none  focus:border-green-500"
+                  value={valuesToSend?.ai || ""}
+                  onChange={(e) => handleChange("ai", e.target.value)}
+                  type="text"
+                  placeholder="Assignment 1 or Name of Assignment"
+                />
+              </div>
             </div>
           </div>
         </div>

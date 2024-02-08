@@ -15,7 +15,9 @@ export default function MyDocument({ receivedValues, message }) {
             {receivedValues.subject}
           </p>
           <p className="Subject font-bold">{receivedValues.code}</p>
-          <p className="Subject font-bold">{receivedValues.assignment}</p>
+          <p className="Subject text-center font-bold">
+            {receivedValues.assignment}
+          </p>
         </div>
 
         <div className="footer-details flex flex-col  items-center mt-80">

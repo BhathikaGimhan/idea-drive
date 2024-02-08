@@ -31,9 +31,7 @@ export default function Assignment() {
       const doc = new jsPDF("p", "mm");
       doc.addImage(canvas, "PNG", 0, 0, imgWidth, imgHeight, "", "FAST");
       while (heightLeft >= 0) {
-        position = heightLeft - imgHeight;
-        x = position + 15;
-        position = x;
+        Image;
         doc.addPage();
         doc.addImage(
           canvas,
@@ -76,6 +74,7 @@ export default function Assignment() {
 
   const [message, setMessage] = useState("");
   const [value, setValue] = useState("");
+  const [button, setButton] = useState(1);
   const [chatHistory, setChatHistory] = useState([
     {
       role: "model",
@@ -83,6 +82,7 @@ export default function Assignment() {
     },
   ]);
   const genarate = async () => {
+    setButton(2);
     setValue("");
     const model = genAI.getGenerativeModel({ model: "gemini-pro" });
     const chat = model.startChat({
@@ -113,6 +113,7 @@ export default function Assignment() {
       ]);
 
       setValue("");
+      setButton(3);
     } catch (error) {
       // Handle the error (e.g., display an alert or update the UI with an error message)
       // console.error(error.message);
@@ -129,9 +130,46 @@ export default function Assignment() {
   };
   return (
     <div>
-      <div className=" relative">
-        <div className="form-veiw flex top-40  ">
-          <div className="right bg-neutral-400 max-md:-left-[30rem]">
+      <div className="assignment-body flex top-16  w-full justify-center m-2">
+        <div className="pdf-view max-[1400px]:-ml-[30rem] ">
+          <div id="pdf" ref={reportTemplateRef}>
+            <MyDocument receivedValues={receivedValues} message={chatHistory} />
+          </div>
+        </div>
+        <div className="form-vew bg-white w-full h-full">
+          <div className=" mt-4 fixed">
+            <Front valuesToSend={valuesToSend} onSend={handleSend} />
+            <div className="button-section gap-2 flex flex-col">
+              <button
+                className={`px-2 py-1 border flex justify-center transition-all duration-400 hover:bg-green-950 !border-green-500 rounded-full `}
+                onClick={genarate}
+              >
+                Genarate PDF
+                {button === 2 ? (
+                  <Image
+                    className="ml-5 animate-spin"
+                    width={20}
+                    height={20}
+                    src={"/images/icon/loading.svg"}
+                    alt="Logo"
+                  />
+                ) : (
+                  ""
+                )}
+              </button>
+              <button
+                className={`px-2 py-1 ${
+                  button === 3 ? "" : "hidden"
+                } border transition-all duration-400 hover:bg-green-950 !border-green-500 rounded-full `}
+                onClick={handleDownloadPdf}
+              >
+                Download PDF
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      {/* <div className="right bg-neutral-400 max-md:-left-[30rem]">
             <div className="max-h-full -ml-24  -z-50">
               <div className="">
                 <div id="pdf" ref={reportTemplateRef}>
@@ -146,13 +184,35 @@ export default function Assignment() {
           <div className="left w-full">
             <div className="ml-[2vw] mt-4 fixed">
               <Front valuesToSend={valuesToSend} onSend={handleSend} />
-              <button onClick={handleDownloadPdf}>click</button>
-              <button onClick={genarate}>AI</button>
-              <Link href="/chat/option/assignment/Doc">Go</Link>
+              <div className="button-section gap-2 flex flex-col">
+                <button
+                  className={`px-2 py-1 border flex justify-center transition-all duration-400 hover:bg-green-950 !border-green-500 rounded-full `}
+                  onClick={genarate}
+                >
+                  Genarate PDF
+                  {button === 2 ? (
+                    <Image
+                      className="ml-5 animate-spin"
+                      width={20}
+                      height={20}
+                      src={"/images/icon/loading.svg"}
+                      alt="Logo"
+                    />
+                  ) : (
+                    ""
+                  )}
+                </button>
+                <button
+                  className={`px-2 py-1 ${
+                    button === 3 ? "" : "hidden"
+                  } border transition-all duration-400 hover:bg-green-950 !border-green-500 rounded-full `}
+                  onClick={handleDownloadPdf}
+                >
+                  Download PDF
+                </button>
+              </div>
             </div>
-          </div>
-        </div>
-      </div>
+          </div> */}
       <div className="chat-btn mb-0 z-50 !bg-[#10151d] absolute h-16 rounded-r-full  bottom-0 left-0 w-16 ">
         <div className="fixed bg-[#10151d] z-50 flex left-5 pr-10 w-full mt-6">
           <div className="flex flex-col gap-5 -mt-5 pr-5">

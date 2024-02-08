@@ -59,7 +59,7 @@ export default function SideBar() {
                     alt="svg icon"
                     width={40}
                     height={40}
-                    className="fixed -right-[4.3rem] top-0 -mt-2 mr-3"
+                    className="fixed right-[0.3rem] top-0 mt-3 -ml-3"
                   />
                 </button>
               </>

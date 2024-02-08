@@ -24,7 +24,7 @@ export default function Loading() {
   }, []);
   return (
     <main
-      className={`flex min-h-fit flex-col  -mt-52 items-center justify-between ${
+      className={`flex min-h-fit z-[999999999] flex-col bg-black h-screen  mt-0 items-center justify-between ${
         loading ? "" : "hidden"
       } `}
     >
