@@ -9,7 +9,7 @@ export default function MyDocument({ receivedValues, message }) {
       className="pb-10 "
       // style={{ backgroundImage: "url('/images/note.png')" }}
     >
-      <div className=" w-full text-center text-[30px] leading-6 flex flex-col  items-center h-[200mm]">
+      <div className=" w-full text-center text-[30px] leading-8 flex flex-col  items-center h-[200mm]">
         <div className="head-details flex flex-col  items-center mt-20">
           <p className="Subject font-bold">{receivedValues.subject}</p>
           <p className="Subject font-bold">{receivedValues.code}</p>

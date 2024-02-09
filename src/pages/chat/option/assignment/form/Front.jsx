@@ -16,7 +16,7 @@ export default function Front({ valuesToSend, onSend }) {
                   className="block uppercase tracking-wide text-green-50 text-xs font-bold mb-2"
                   for="grid-first-name"
                 >
-                  First Name
+                  Full Name:
                 </label>
                 <input
                   className="appearance-none block w-full bg-transparent text-green-50 border border-green-900 rounded py-3 px-4 mb-3 leading-tight focus:outline-none "
@@ -31,7 +31,7 @@ export default function Front({ valuesToSend, onSend }) {
                   className="block uppercase tracking-wide text-green-50 text-xs font-bold mb-2"
                   for="grid-last-name"
                 >
-                  Reg. No
+                  Reg. No:
                 </label>
                 <input
                   className="appearance-none block w-full bg-transparent text-green-50 border border-green-900 rounded py-3 px-4 leading-tight focus:outline-none  focus:border-green-500"
@@ -49,7 +49,7 @@ export default function Front({ valuesToSend, onSend }) {
                   className="block uppercase tracking-wide text-green-50 text-xs font-bold mb-2"
                   for="grid-first-name"
                 >
-                  Subject Title
+                  Subject Title:
                 </label>
                 <input
                   className="appearance-none block w-full bg-transparent text-green-50 border border-green-900 rounded py-3 px-4 mb-3 leading-tight focus:outline-none "
@@ -64,7 +64,7 @@ export default function Front({ valuesToSend, onSend }) {
                   className="block uppercase tracking-wide text-green-50 text-xs font-bold mb-2"
                   for="grid-last-name"
                 >
-                  Subject Code
+                  Subject Code:
                 </label>
                 <input
                   className="appearance-none block w-full bg-transparent text-green-50 border border-green-900 rounded py-3 px-4 leading-tight focus:outline-none  focus:border-green-500"
@@ -81,7 +81,7 @@ export default function Front({ valuesToSend, onSend }) {
                   className="block uppercase tracking-wide text-green-50 text-xs font-bold mb-2"
                   for="grid-password"
                 >
-                  Assignment Title
+                  Assignment Title:
                 </label>
                 <input
                   className="appearance-none block w-full bg-transparent text-green-50 border border-green-900 rounded py-3 px-4 mb-3 leading-tight focus:outline-none  focus:border-green-500"
@@ -90,13 +90,13 @@ export default function Front({ valuesToSend, onSend }) {
                   type="text"
                   placeholder="Assignment 1 or Name of Assignment"
                 />
-                <p className="text-green-300 text-xs italic">
+                {/* <p className="text-green-300 text-xs italic">
                   Make it as long and as crazy as youlike
-                </p>
+                </p> */}
               </div>
             </div>
 
-            <div className="flex flex-wrap -mx-3 mb-6">
+            <div className="flex flex-wrap -mx-3 mb-3">
               <div className="w-full px-3">
                 <label
                   className="block uppercase tracking-wide text-green-50 text-xs font-bold mb-2"

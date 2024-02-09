@@ -201,7 +201,7 @@ export default function Assignment() {
           <div className="left ml-10  py-10">
             <div className=" mt-0 right-0">
               <Front valuesToSend={valuesToSend} onSend={handleSend} />
-              <div className="button-section gap-3 mx-7 flex flex-col">
+              <div className="button-section gap-3 mx-7 pb-5 flex flex-col">
                 <div className="chooos flex gap-1 w-full">
                   <button
                     className={`px-2 py-1 ${
