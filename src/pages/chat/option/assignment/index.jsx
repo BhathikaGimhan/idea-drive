@@ -8,6 +8,7 @@ import jsPDF from "jspdf";
 import html2canvas from "html2canvas";
 import Front from "./form/Front";
 import MyDocument from "./form/pdf";
+import puppeteer from "puppeteer";
 import { GoogleGenerativeAI } from "@google/generative-ai";
 const genAI = new GoogleGenerativeAI("AIzaSyArDcvm4OUPx45Uv-fVGulbsgQYPnIjuM8");
 

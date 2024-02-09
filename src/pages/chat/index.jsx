@@ -1,7 +1,6 @@
 "use client";
 import { Suspense, useState } from "react";
 import Image from "next/image";
-
 import ChatWindow from "./ChatWindow";
 import Translate from "./option/translate/Translate";
 import Options from "./option/tools/Options";
