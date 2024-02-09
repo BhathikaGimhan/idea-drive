@@ -8,7 +8,6 @@ import jsPDF from "jspdf";
 import html2canvas from "html2canvas";
 import Front from "./form/Front";
 import MyDocument from "./form/pdf";
-import puppeteer from "puppeteer";
 import { GoogleGenerativeAI } from "@google/generative-ai";
 const genAI = new GoogleGenerativeAI("AIzaSyArDcvm4OUPx45Uv-fVGulbsgQYPnIjuM8");
 
@@ -132,6 +131,27 @@ export default function Assignment() {
       // You might want to inform the user about the issue, e.g., by updating the UI
     }
   };
+  const textPDF = useRef(null);
+  const textDownloadPdf = async () => {
+    const Telement = textPDF.current;
+    const htmlToPdf = `<!DOCTYPE html>
+    <html>
+    <body>
+        ${Telement}
+    </body>
+    </html>`;
+    if (htmlToPdf) {
+      // const canvas = await html2canvas(element);
+      // const data = canvas.toDataURL("image/png");
+      var Tdoc = new jsPDF("p", "pt", "a4");
+      Tdoc.html(textPDF.current, {
+        callback: function (Tdoc) {
+          Tdoc.save();
+        },
+        margin: [40, 200, 60, 40],
+      });
+    }
+  };
   return (
     <div className="assignment-body">
       <Image
@@ -198,6 +218,7 @@ export default function Assignment() {
                     Download
                   </button>
                   <button
+                    onClick={textDownloadPdf}
                     className={`px-2 py-1 ${
                       button === 3 ? "" : "hidden"
                     } border transition-all w-full flex justify-center items-center duration-400 hover:bg-green-950 !border-green-500 rounded-full `}
@@ -245,6 +266,12 @@ export default function Assignment() {
           id="pdf"
           className=" font-[hand1] w-[140mm] text-[#0d0947] bg-white"
           ref={reportTemplateRef}
+        >
+          <MyDocument receivedValues={receivedValues} message={chatHistory} />
+        </div>
+        <div
+          className=" w-[140mm] text-justify text-[#000] bg-white"
+          ref={textPDF}
         >
           <MyDocument receivedValues={receivedValues} message={chatHistory} />
         </div>
