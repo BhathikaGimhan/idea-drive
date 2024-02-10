@@ -1,6 +1,4 @@
 "use client";
-import { useState } from "react";
-
 import ReactMarkdown from "react-markdown";
 
 export default function MyDocument({ receivedValues, message }) {
@@ -11,17 +9,17 @@ export default function MyDocument({ receivedValues, message }) {
     >
       <div className=" w-full text-center text-[30px] leading-8 flex flex-col  items-center h-[200mm]">
         <div className="head-details flex flex-col  items-center mt-20">
-          <p className="Subject font-bold">{receivedValues.subject}</p>
-          <p className="Subject font-bold">{receivedValues.code}</p>
-          <p className="Subject text-center font-bold">
+          <h2 className="Subject font-bold">{receivedValues.subject}</h2>
+          <h2 className="Subject font-bold">{receivedValues.code}</h2>
+          <h2 className="Subject text-center font-bold">
             {receivedValues.assignment}
-          </p>
+          </h2>
         </div>
 
         <div className="footer-details flex flex-col  items-center mt-80">
-          <p className=" font-bold">by: </p>
-          <p className=" font-bold">{receivedValues.name}</p>
-          <p className=" font-bold">{receivedValues.regNo}</p>
+          <h2 className=" font-bold">by: </h2>
+          <h2 className=" font-bold">{receivedValues.name}</h2>
+          <h2 className=" font-bold">{receivedValues.regNo}</h2>
         </div>
       </div>
       <div className="containt text-[20px] ml-10 mr-6">

@@ -14,7 +14,7 @@ export default function Header() {
     } else if (currentRoute === "/chat") {
       setUrl(" / QT Bot");
     } else if (currentRoute === "/chat/option/assignment") {
-      setUrl(" / Assignmenta");
+      setUrl(" / Assignment-Experimental");
     } else {
       setUrl(currentRoute);
     }

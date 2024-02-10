@@ -27,7 +27,6 @@ export default function Assignment() {
     setLoading(downloadMode);
     setDownload(downloadMode);
     const data = reportTemplateRef.current;
-    console.log(downloadMode);
     setTimeout(() => {
       if (downloadMode === 1) {
         html2canvas(data).then((canvas) => {
@@ -61,7 +60,6 @@ export default function Assignment() {
           setLoading(0);
         });
       } else if (downloadMode === 2) {
-        console.log("Downloading");
         const htmlToPdf = `<!DOCTYPE html>
           <html>
           <body>
@@ -285,7 +283,7 @@ export default function Assignment() {
             download === 1
               ? "font-[hand1] w-[140mm] text-[#080077] bg-white"
               : download === 2
-              ? "w-[140mm] text-[#000] bg-white"
+              ? "w-[140mm] text-[#000] bg-white  font-serif"
               : ""
           }`}
           ref={reportTemplateRef}

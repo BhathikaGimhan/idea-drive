@@ -440,7 +440,7 @@ body {
   @apply leading-10 pt-10;
 }
 .pdf-view p {
-  @apply pb-3;
+  @apply pb-5;
 }
 /* .ai-chat pre code {
   @apply l;
