@@ -15,42 +15,73 @@ export default function Assignment() {
   const [option, setOption] = useState("chat");
   const [button, setButton] = useState(1);
   const [showPdf, setShowPdf] = useState(false);
+  const [download, setDownload] = useState(0);
+  const [loading, setLoading] = useState(0);
   const handleOptionClick = (option) => {
     setOption(option);
   };
 
   const reportTemplateRef = useRef(null);
-  const handleDownloadPdf = async () => {
+
+  const handleDownloadPdf = async (downloadMode) => {
+    setLoading(downloadMode);
+    setDownload(downloadMode);
     const data = reportTemplateRef.current;
-    html2canvas(data).then((canvas) => {
-      const imgWidth = 208;
-      const pageHeight = 295;
-      const imgHeight = (canvas.height * imgWidth) / canvas.width;
-      let heightLeft = imgHeight;
-      let position = 0;
-      let x = 0;
-      heightLeft -= pageHeight;
-      const doc = new jsPDF("p", "mm");
-      doc.addImage(canvas, "PNG", 0, 0, imgWidth, imgHeight, "", "FAST");
-      while (heightLeft >= 0) {
-        position = heightLeft - imgHeight;
-        x = position + 15;
-        position = x;
-        doc.addPage();
-        doc.addImage(
-          canvas,
-          "PNG",
-          0,
-          position,
-          imgWidth,
-          imgHeight,
-          "",
-          "FAST"
-        );
-        heightLeft -= pageHeight;
+    console.log(downloadMode);
+    setTimeout(() => {
+      if (downloadMode === 1) {
+        html2canvas(data).then((canvas) => {
+          const imgWidth = 208;
+          const pageHeight = 295;
+          const imgHeight = (canvas.height * imgWidth) / canvas.width;
+          let heightLeft = imgHeight;
+          let position = 0;
+          let x = 0;
+          heightLeft -= pageHeight;
+          const doc = new jsPDF("p", "mm");
+          doc.addImage(canvas, "PNG", 0, 0, imgWidth, imgHeight, "", "FAST");
+          while (heightLeft >= 0) {
+            position = heightLeft - imgHeight;
+            x = position + 15;
+            position = x;
+            doc.addPage();
+            doc.addImage(
+              canvas,
+              "PNG",
+              0,
+              position,
+              imgWidth,
+              imgHeight,
+              "",
+              "FAST"
+            );
+            heightLeft -= pageHeight;
+          }
+          doc.save("Downld.pdf");
+          setLoading(0);
+        });
+      } else if (downloadMode === 2) {
+        console.log("Downloading");
+        const htmlToPdf = `<!DOCTYPE html>
+          <html>
+          <body>
+              ${data}
+          </body>
+          </html>`;
+        if (htmlToPdf) {
+          // const canvas = await html2canvas(element);
+          // const data = canvas.toDataURL("image/png");
+          var Tdoc = new jsPDF("p", "pt", "a4");
+          Tdoc.html(data, {
+            callback: function (Tdoc) {
+              Tdoc.save();
+              setLoading(0);
+            },
+            margin: [32, 200, 60, 25],
+          });
+        }
       }
-      doc.save("Downld.pdf");
-    });
+    }, 500);
   };
 
   const [valuesToSend, setValuesToSend] = useState({
@@ -131,27 +162,7 @@ export default function Assignment() {
       // You might want to inform the user about the issue, e.g., by updating the UI
     }
   };
-  const textPDF = useRef(null);
-  const textDownloadPdf = async () => {
-    const Telement = textPDF.current;
-    const htmlToPdf = `<!DOCTYPE html>
-    <html>
-    <body>
-        ${Telement}
-    </body>
-    </html>`;
-    if (htmlToPdf) {
-      // const canvas = await html2canvas(element);
-      // const data = canvas.toDataURL("image/png");
-      var Tdoc = new jsPDF("p", "pt", "a4");
-      Tdoc.html(textPDF.current, {
-        callback: function (Tdoc) {
-          Tdoc.save();
-        },
-        margin: [40, 200, 60, 40],
-      });
-    }
-  };
+
   return (
     <div className="assignment-body">
       <Image
@@ -207,10 +218,13 @@ export default function Assignment() {
                     className={`px-2 py-1 ${
                       button === 3 ? "" : "hidden"
                     } border transition-all w-full duration-400 flex justify-center items-center hover:bg-green-950 !border-green-500 rounded-full `}
-                    onClick={handleDownloadPdf}
+                    onClick={() => handleDownloadPdf(1)}
                   >
                     <Image
-                      src={"/images/icon/pen.svg"}
+                      src={`/images/icon/${
+                        loading === 1 ? "loading.svg" : "pen.svg"
+                      }`}
+                      className={`${loading === 1 ? "animate-spin" : ""}`}
                       width={20}
                       height={20}
                       alt="icon"
@@ -218,13 +232,16 @@ export default function Assignment() {
                     Download
                   </button>
                   <button
-                    onClick={textDownloadPdf}
+                    onClick={() => handleDownloadPdf(2)}
                     className={`px-2 py-1 ${
                       button === 3 ? "" : "hidden"
                     } border transition-all w-full flex justify-center items-center duration-400 hover:bg-green-950 !border-green-500 rounded-full `}
                   >
                     <Image
-                      src={"/images/icon/type.svg"}
+                      src={`/images/icon/${
+                        loading === 2 ? "loading.svg" : "type.svg"
+                      }`}
+                      className={`${loading === 2 ? "animate-spin" : ""}`}
                       width={20}
                       height={20}
                       alt="icon"
@@ -264,14 +281,14 @@ export default function Assignment() {
       <div className="fixed -left-[100rem]">
         <div
           id="pdf"
-          className=" font-[hand1] w-[140mm] text-[#0d0947] bg-white"
+          className={`${
+            download === 1
+              ? "font-[hand1] w-[140mm] text-[#080077] bg-white"
+              : download === 2
+              ? "w-[140mm] text-[#000] bg-white"
+              : ""
+          }`}
           ref={reportTemplateRef}
-        >
-          <MyDocument receivedValues={receivedValues} message={chatHistory} />
-        </div>
-        <div
-          className=" w-[140mm] text-justify text-[#000] bg-white"
-          ref={textPDF}
         >
           <MyDocument receivedValues={receivedValues} message={chatHistory} />
         </div>
