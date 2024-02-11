@@ -1,4 +1,5 @@
 "use client";
+import AppBar from "@/pages/components/AppBar";
 import Image from "next/image";
 import { useState } from "react";
 
@@ -59,13 +60,13 @@ export default function SideBar() {
                     alt="svg icon"
                     width={40}
                     height={40}
-                    className="fixed right-[0.3rem] top-0 mt-3 -ml-3"
+                    className="fixed right-[1rem] top-5 -mt-2 "
                   />
                 </button>
               </>
             )}
           </h1>
-          <div className={` side-bar-btn group  max-md:mt-32`}>
+          <div className={` side-bar-btn group  max-md:mt-20`}>
             <div className="bar-icon">
               <Image
                 src={"/images/icon/service.svg"}
@@ -132,6 +133,7 @@ export default function SideBar() {
             <div className="tool-tip group">About</div>
             <div className="side-active"></div>
           </div>
+          <AppBar />
         </div>
       </div>
     </div>

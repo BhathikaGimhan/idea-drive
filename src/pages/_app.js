@@ -5,9 +5,10 @@ import SideBar from "./tools/sideBar/SideBar";
 import NextNProgress from "nextjs-progressbar";
 import Bot from "./tools/qt/bot";
 import Background from "./tools/background/Background";
-import { Suspense, useEffect } from "react";
-import Loading from "./loading";
+import { useEffect } from "react";
 import { useRouter } from "next/router";
+import Providers from "./components/Providers";
+import AppBar from "./components/AppBar";
 
 export default function App({ Component, pageProps }) {
   const router = useRouter();
@@ -27,19 +28,20 @@ export default function App({ Component, pageProps }) {
     <>
       <Background />
       <Bot />
-      <SideBar />
+      <Providers>
+        <SideBar />
 
-      <div className="file-container">
-        <div className="file-explor ">
-          <Header />
-          <div className="folder-boody mt-10  ">
-            <div className="folder-view">
-              <Loading />
-              <Component {...pageProps} />
+        <div className="file-container">
+          <div className="file-explor ">
+            <Header />
+            <div className="folder-boody mt-10  ">
+              <div className="folder-view">
+                <Component {...pageProps} />
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      </Providers>
       <NextNProgress
         color="#0aff7069"
         stopDelayMs={200}
