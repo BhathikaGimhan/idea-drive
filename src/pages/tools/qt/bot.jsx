@@ -2,11 +2,14 @@
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
+import { useSession } from "next-auth/react";
 
 import Link from "next/link";
 
 export default function Bot() {
   const currentRoute = usePathname();
+  const { data: session } = useSession();
+
   const [message, setMessage] = useState(false);
   const [chatRout, setChatRout] = useState(false);
   const handleClose = () => {
@@ -46,7 +49,7 @@ export default function Bot() {
       <div
         className={`chat-box  ${
           message ? "" : "-mt-96"
-        } z-20 transition-all duration-700 fixed  top-8 md:max-h-[400px] overflow-auto  right-[2rem] p-4 rounded-s-3xl rounded-b-3xl border backdrop-blur-md !border-green-950 bg-[#ffffff21] w-96 h-fit `}
+        } z-20 transition-all duration-700 fixed  top-8 md:max-h-[400px] overflow-auto  right-[2rem] p-4 rounded-s-3xl rounded-b-3xl border backdrop-blur-md !border-green-950 bg-[#ffffff21] md:w-96 h-fit `}
       >
         <Image
           onClick={handleClose}
@@ -58,8 +61,17 @@ export default function Bot() {
         />
 
         <div className="button-section flex gap-4">
-          hello im QT bot... <br />
-          you can chat with me. please click me for chat.
+          {session ? (
+            <p>
+              Hello {session.user.name} im QT bot... <br />
+              you can chat with me. please click me for chat.
+            </p>
+          ) : (
+            <p>
+              . im QT bot... <br />
+              you can chat with me. please click me for chat.
+            </p>
+          )}
         </div>
       </div>
     </>

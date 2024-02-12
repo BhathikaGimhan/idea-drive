@@ -8,7 +8,7 @@ import Background from "./tools/background/Background";
 import { useEffect } from "react";
 import { useRouter } from "next/router";
 import Providers from "./components/Providers";
-import AppBar from "./components/AppBar";
+import { getSession } from "next-auth/react";
 
 export default function App({ Component, pageProps }) {
   const router = useRouter();
@@ -27,8 +27,8 @@ export default function App({ Component, pageProps }) {
   return (
     <>
       <Background />
-      <Bot />
       <Providers>
+        <Bot />
         <SideBar />
 
         <div className="file-container">
