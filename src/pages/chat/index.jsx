@@ -1,24 +1,34 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 "use client";
-import { Suspense, useState } from "react";
+import { Suspense, useLayoutEffect, useState } from "react";
 import Image from "next/image";
 import ChatWindow from "./ChatWindow";
 import Translate from "./option/translate/Translate";
 import Options from "./option/tools/Options";
 import Loading from "../loading";
+import { useRouter } from "next/router";
+import withAuth from "../components/withAuth";
 const { GoogleGenerativeAI } = require("@google/generative-ai");
 const genAI = new GoogleGenerativeAI("AIzaSyArDcvm4OUPx45Uv-fVGulbsgQYPnIjuM8");
 
-export default function chat() {
-  // eslint-disable-next-line react-hooks/rules-of-hooks
+const Chat = () => {
   const [message, setMessage] = useState("");
-  // eslint-disable-next-line react-hooks/rules-of-hooks
   const [value, setValue] = useState("");
   const [translate, setTranslate] = useState("");
-  // eslint-disable-next-line react-hooks/rules-of-hooks
   const [clearTranslationInput, setTranslateInput] = useState(false);
   const [option, setOption] = useState("chat");
   const [loading, setLoadning] = useState(false);
+
+  const router = useRouter();
+
+  // useLayoutEffect(() => {
+  //   const session = sessionState;
+  //   console.log(session);
+  //   if (!session) {
+  //     router.push("/");
+  //   }
+  // }, []);
+
   const [chatHistory, setChatHistory] = useState([
     {
       role: "model",
@@ -152,4 +162,5 @@ export default function chat() {
       </div>
     </>
   );
-}
+};
+export default withAuth(Chat);

@@ -66,7 +66,7 @@ export default function SideBar() {
               </>
             )}
           </h1>
-          <div className={` side-bar-btn group  max-md:mt-20`}>
+          <div className={` side-bar-btn group md:mt-10 max-md:mt-20`}>
             <div className="bar-icon">
               <Image
                 src={"/images/icon/service.svg"}

@@ -9,9 +9,10 @@ import html2canvas from "html2canvas";
 import Front from "./form/Front";
 import MyDocument from "./form/pdf";
 import { GoogleGenerativeAI } from "@google/generative-ai";
+import withAuth from "@/pages/components/withAuth";
 const genAI = new GoogleGenerativeAI("AIzaSyArDcvm4OUPx45Uv-fVGulbsgQYPnIjuM8");
 
-export default function Assignment() {
+const Assignment = () => {
   const [option, setOption] = useState("chat");
   const [button, setButton] = useState(1);
   const [showPdf, setShowPdf] = useState(false);
@@ -293,4 +294,6 @@ export default function Assignment() {
       </div>
     </div>
   );
-}
+};
+
+export default withAuth(Assignment);
