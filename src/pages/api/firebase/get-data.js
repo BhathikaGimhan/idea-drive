@@ -4,7 +4,7 @@ import app from "../../firebase";
 const firestore = getFirestore(app);
 
 export default async function handler(req, res) {
-  const snapshot = await getDocs(collection(firestore, "your-collection-name"));
+  const snapshot = await getDocs(collection(firestore, "notice"));
 
   const data = snapshot.docs.map((doc) => ({
     id: doc.id,

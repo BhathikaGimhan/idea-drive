@@ -1,9 +1,70 @@
 import Image from "next/image";
 import { Inter } from "next/font/google";
+import { useEffect, useState } from "react";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
+  const [postData, setPostData] = useState("");
+  const [response, setResponse] = useState("");
+
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+  const fetchData = async () => {
+    try {
+      const response = await fetch("/api/firebase/get-data");
+      if (!response.ok) {
+        throw new Error("Failed to fetch data");
+      }
+      const jsonData = await response.json();
+      setData(jsonData);
+      setLoading(false);
+    } catch (error) {
+      setError(error.message);
+      setLoading(false);
+    }
+  };
+  if (loading) {
+    return <p>Loading...</p>;
+  }
+
+  if (error) {
+    return <p>Error: {error}</p>;
+  }
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    try {
+      const input = { data: postData };
+      const data = {
+        data: input,
+        route: "notice",
+      };
+      const response = await fetch("/api/firebase/post-data", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to add document");
+      }
+
+      const responseData = await response.json();
+      fetchData();
+      setResponse(`Document added successfully with ID: ${responseData.id}`);
+    } catch (error) {
+      setResponse(`Error: ${error.message}`);
+    }
+  };
   return (
     <main
       className={`flex min-h-fit flex-col -mt-52 items-center justify-between ${inter.className}`}
@@ -31,16 +92,35 @@ export default function Home() {
             priority
           />
         </h2>
-        <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-          {/* We appreciate your patience while our website is loading. We're working hard to bring you the best possible experience, and we're confident that it will be worth the wait.
-
-In the meantime, here's a fun animation to keep you entertained:
-
-[Insert loading animation here] */}
-          Please note that the loading time may vary depending on your internet
-          speed and the number of visitors on the website. <br /> Thank you for
-          your understanding!
-        </p>
+        <div>
+          <h2>Post Data</h2>
+          <form onSubmit={handleSubmit}>
+            <label>
+              Data:
+              <input
+                type="text"
+                className="text-black"
+                value={postData}
+                onChange={(e) => setPostData(e.target.value)}
+              />
+            </label>
+            <button type="submit">Submit</button>
+          </form>
+          {response && <p>{response}</p>}
+        </div>
+        <div>
+          <h2>Data from Firestore</h2>
+          <ul>
+            {data.map((item) => (
+              <li key={item.id}>
+                {/* Display your data here */}
+                <p>
+                  {item.id}: {item.data}
+                </p>
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
     </main>
   );
