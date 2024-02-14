@@ -6,9 +6,11 @@ import { useSession } from "next-auth/react";
 
 export default function withAuth(Component) {
   return function withAuth(props) {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
     const { data: session } = useSession();
     // eslint-disable-next-line react-hooks/rules-of-hooks
     const router = useRouter();
+    // eslint-disable-next-line react-hooks/rules-of-hooks
     useLayoutEffect(() => {
       if (!session) {
         router.push("/");
