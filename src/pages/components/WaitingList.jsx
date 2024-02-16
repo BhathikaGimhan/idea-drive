@@ -36,7 +36,7 @@ export default function WaitingList() {
     if (xxx === code) {
       setResponse(3);
       setCode(code);
-      localStorage.setItem("verify", JSON.stringify(code));
+      localStorage.removeItem("verify", JSON.stringify(code));
     } else {
       setResponse(9);
     }
@@ -44,7 +44,6 @@ export default function WaitingList() {
 
   useEffect(() => {
     fetchData();
-    console.log(localStorage.getItem("verify"));
   }, []);
   const handleSubmit = async (event) => {
     setResponse(2);
@@ -75,7 +74,7 @@ export default function WaitingList() {
     }
   };
   return (
-    <div className=" m-auto -mb-20 mt-20">
+    <div className=" m-auto mb-10 -mt-40">
       {session ? (
         <div class="flex flex-col mt-10 items-center justify-center dark">
           <div class="w-full sm:max-w-md max-md:w-full rounded-lg shadow-md p-6">

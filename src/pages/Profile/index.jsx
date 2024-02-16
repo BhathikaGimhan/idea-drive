@@ -12,7 +12,12 @@ export default function index() {
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const [isAdmin, setAdmin] = useState("");
   // eslint-disable-next-line react-hooks/rules-of-hooks
+  const [code, setCode] = useState("");
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const [role, setRole] = useState("");
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   useLayoutEffect(() => {
+    fetchData();
     const isAdmin = session
       ? session.user.email === "bgmaduragoda@gmail.com"
         ? "admin"
@@ -21,6 +26,23 @@ export default function index() {
 
     setAdmin(isAdmin);
   }, [session]);
+
+  const fetchData = async () => {
+    try {
+      const response = await fetch("/api/firebase/waiting-get");
+      if (!response.ok) {
+        throw new Error("Failed to fetch data");
+      }
+      const jsonData = await response.json();
+      setCode(jsonData[0].code);
+      setRole(jsonData[0].user);
+      // setVerify(true);
+      // setLoading(false);
+    } catch (error) {
+      console.log(error.message);
+      // setLoading(false);
+    }
+  };
 
   return (
     <>
@@ -56,11 +78,11 @@ export default function index() {
             </div>
             <div className="verification">
               <h2 className="">Verification Code: </h2>
-              <h2 className=" font-bold">XXXXXXX</h2>
+              <h2 className=" font-bold">{code === "" ? "XXXXXXXXX" : code}</h2>
             </div>
             <div className="role">
               <h2 className="">Privilege : </h2>
-              <h2 className=" font-bold">Super Admin</h2>
+              <h2 className=" font-bold">{role}</h2>
             </div>
             <div className="logout">
               {session ? (
