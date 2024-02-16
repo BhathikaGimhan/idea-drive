@@ -7,11 +7,12 @@ export default function Access() {
   const [close, setClose] = useState(false);
 
   return (
-    <div>
+    <div className="">
+      <WaitingList />
       <div
         className={`${
           close ? "hidden" : ""
-        } absolute w-full left-0 m-auto screen-body`}
+        } w-full left-0 absolute -mt-40 m-auto screen-body`}
       >
         <div className="red-alert bg-[#524d2667] backdrop-blur-3xl p-10 max-md:px-5 max-md:pb-5 md:m-20 z-50 rounded-xl border !border-[#eef775] max-md:m-5">
           <button
@@ -25,7 +26,6 @@ export default function Access() {
               height={20}
             />
           </button>
-
           <p>
             Oh.. dear! 🙀 <br /> QT Bot&apos;s stirring up quite the commotion,
             and it&apos;s leaving everyone spellbound! Can&apos;t get a piece of
@@ -35,7 +35,6 @@ export default function Access() {
           </p>
         </div>
       </div>
-      <WaitingList />
     </div>
   );
 }

@@ -95,13 +95,14 @@ export default function index() {
             </div>
           </div>
         </div>
-        <div className="earning max-md:w-full md:w-[60%] max-md:mt-10 flex flex-col justify-center items-center m-auto border !border-green-950 h-full rounded-3xl max-md:mb-36">
+        <div className="earning max-md:w-full md:w-[60%] max-md:mt-10 flex flex-col justify-center items-center m-auto  h-full rounded-3xl max-md:mb-36">
           {isAdmin === "user" ? (
             <ComingSoon />
           ) : isAdmin === "admin" ? (
             <SuperAdmin />
           ) : isAdmin === "login" ? (
-            <Login />
+            // <Login />
+            <ComingSoon />
           ) : (
             ""
           )}
