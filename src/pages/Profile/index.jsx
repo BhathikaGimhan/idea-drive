@@ -1,16 +1,31 @@
 "use client";
-import React from "react";
+import { useLayoutEffect, useState } from "react";
 import Image from "next/image";
 import { useSession, signOut, signIn } from "next-auth/react";
+import ComingSoon from "../components/ComingSoon";
+import SuperAdmin from "../components/SuperAdmin";
+import Login from "../components/Login";
 
 export default function index() {
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const { data: session } = useSession();
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const [isAdmin, setAdmin] = useState("");
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  useLayoutEffect(() => {
+    const isAdmin = session
+      ? session.user.email === "bgmaduragoda@gmail.com"
+        ? "admin"
+        : "user"
+      : "login";
+
+    setAdmin(isAdmin);
+  }, [session]);
 
   return (
     <>
       <div className="profile-body flex max-md:flex-col justify-center items-center flex-wrap">
-        <div className="profile max-md:w-full md:w-2/5 max-md:mt-20 flex flex-col justify-center items-center">
+        <div className="profile max-md:w-full md:w-2/5 max-md:mt-10 flex flex-col justify-center items-center">
           <div className="ditail font-sans md:fixed flex flex-col border !border-green-950 p-10 rounded-3xl gap-8 ">
             <div className="user-profile w-full md:-ml-10 md:absolute justify-center items-center md:-mt-20 z-40">
               {session ? (
@@ -80,39 +95,18 @@ export default function index() {
             </div>
           </div>
         </div>
-        <div className="earning max-md:w-full md:w-[60%] bg-white h-28"></div>
+        <div className="earning max-md:w-full md:w-[60%] max-md:mt-10 flex flex-col justify-center items-center m-auto border !border-green-950 h-full rounded-3xl max-md:mb-36">
+          {isAdmin === "user" ? (
+            <ComingSoon />
+          ) : isAdmin === "admin" ? (
+            <SuperAdmin />
+          ) : isAdmin === "login" ? (
+            <Login />
+          ) : (
+            ""
+          )}
+        </div>
       </div>
     </>
-    // <div className="flex justify-center">
-    //   <div className="group before:hover:scale-95 before:hover:h-72 before:hover:w-80 before:hover:h-44 before:hover:rounded-b-2xl before:transition-all before:duration-500 before:content-[''] before:w-80 before:h-24 before:rounded-t-2xl before:bg-gradient-to-bl from-sky-200 via-hreen-200 to-green-700 before:absolute before:top-0 w-80 h-72 relative bg-transparent flex flex-col items-center justify-center gap-2 text-center rounded-2xl overflow-hidden">
-    //     <div className="w-28 h-28 bg-blue-700 mt-8 rounded-full border-4 border-slate-50 z-10 group-hover:scale-150 group-hover:-translate-x-24  group-hover:-translate-y-20 transition-all duration-500">
-    //       {session ? (
-    //         <Image
-    //           width={200}
-    //           height={200}
-    //           alt="avatar"
-    //           src={image}
-    //           className="rounded-full bottom-0 w-20 h-20"
-    //         />
-    //       ) : (
-    //         <span className="text-2xl font-semibold">Plese Login</span>
-    //       )}
-    //     </div>
-    //     <div className="z-10  group-hover:-translate-y-10 transition-all duration-500">
-    //       {session ? (
-    //         <span className="text-2xl font-semibold">{session.user.email}</span>
-    //       ) : (
-    //         <span className="text-2xl font-semibold">Plese Login</span>
-    //       )}
-    //       <p>Support Specialist</p>
-    //     </div>
-    //     <a
-    //       className="bg-blue-700 px-4 py-1 text-slate-50 rounded-md z-10 hover:scale-125 transition-all duration-500 hover:bg-blue-500"
-    //       href="#"
-    //     >
-    //       Folow
-    //     </a>
-    //   </div>
-    // </div>
   );
 }
