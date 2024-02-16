@@ -103,7 +103,7 @@ export default function SideBar() {
               />
             </div>
             <div className="tool-tip group md:px-12 max-md:mt-4 md:mt-2">
-              Members
+              Innovation
             </div>
             <div className="side-active"></div>
           </div>

@@ -13,7 +13,7 @@ export default function withAuth(Component) {
     // eslint-disable-next-line react-hooks/rules-of-hooks
     useLayoutEffect(() => {
       if (!session) {
-        router.push("/");
+        router.push("/Profile");
       }
     }, []);
     if (!session) {

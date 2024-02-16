@@ -26,7 +26,7 @@ export default function Bot() {
         setMessage(true);
       }, 2000);
     }
-  }, []);
+  }, [currentRoute]);
 
   return (
     <>
