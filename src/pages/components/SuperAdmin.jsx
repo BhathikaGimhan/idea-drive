@@ -61,17 +61,17 @@ export default function SuperAdmin() {
   return (
     <div>
       <div className="table-body">
-        <div class="relative overflow-x-auto max-md:max-w-[80vw] md:max-w-[50vw] max-h-[60vh] shadow-md sm:rounded-lg">
-          <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-            <thead class="text-xs text-gray-700 w-fit uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+        <div className="relative overflow-x-auto max-md:max-w-[80vw] md:max-w-[50vw] max-h-[60vh] shadow-md sm:rounded-lg">
+          <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+            <thead className="text-xs text-gray-700 w-fit uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
               <tr>
-                <th scope="col" class="px-6 py-3">
+                <th scope="col" className="px-6 py-3">
                   User name
                 </th>
-                <th scope="col" class="px-6 py-3">
+                <th scope="col" className="px-6 py-3">
                   email
                 </th>
-                <th scope="col" class="px-6 py-3">
+                <th scope="col" className="px-6 py-3">
                   Code
                 </th>
               </tr>
@@ -80,16 +80,16 @@ export default function SuperAdmin() {
               {data.map((item) => (
                 <tr
                   key={item.id}
-                  class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
+                  className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
                 >
                   <th
                     scope="row"
-                    class="px-6 py-4 font-medium text-gray-900 whitespace-break-spaces dark:text-white"
+                    className="px-6 py-4 font-medium text-gray-900 whitespace-break-spaces dark:text-white"
                   >
                     {item.name}
                   </th>
-                  <td class="px-6 py-4">{item.email}</td>
-                  <td class="px-6 py-4">
+                  <td className="px-6 py-4">{item.email}</td>
+                  <td className="px-6 py-4">
                     {item.code === "" ? (
                       <button
                         className="px-3 py-2 bg-green-600 text-white font-bold rounded-3xl"

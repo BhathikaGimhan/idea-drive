@@ -76,20 +76,22 @@ export default function WaitingList() {
   return (
     <div className=" m-auto mb-10 -mt-40">
       {session ? (
-        <div class="flex flex-col mt-10 items-center justify-center dark">
-          <div class="w-full sm:max-w-md max-md:w-full rounded-lg shadow-md p-6">
-            <h2 class="text-2xl font-bold text-gray-200 mb-4">Join waitlist</h2>
+        <div className="flex flex-col mt-10 items-center justify-center dark">
+          <div className="w-full sm:max-w-md max-md:w-full rounded-lg shadow-md p-6">
+            <h2 className="text-2xl font-bold text-gray-200 mb-4">
+              Join waitlist
+            </h2>
 
-            <form class="flex flex-col">
+            <div className="flex flex-col">
               <input
                 placeholder="User name"
-                class="bg-gray-700 text-gray-200 border-0 rounded-md p-2 mb-4 focus:bg-gray-600 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150"
+                className="bg-gray-700 text-gray-200 border-0 rounded-md p-2 mb-4 focus:bg-gray-600 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150"
                 value={session.user.name}
                 disabled
               />
               <input
                 placeholder="User email"
-                class="bg-gray-700 text-gray-200 border-0 rounded-md p-2 mb-4 focus:bg-gray-600 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150"
+                className="bg-gray-700 text-gray-200 border-0 rounded-md p-2 mb-4 focus:bg-gray-600 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150"
                 value={session.user.email}
                 disabled
               />
@@ -101,7 +103,7 @@ export default function WaitingList() {
                       placeholder="Verification Code"
                       value={code}
                       onChange={(e) => setCode(e.target.value)}
-                      class="bg-gray-700 text-gray-200 border-0 rounded-md p-2 mb-4 focus:bg-gray-600 focus:outline-none focus:ring-1 focus:ring-green-500 transition ease-in-out duration-150"
+                      className="bg-gray-700 text-gray-200 border-0 rounded-md p-2 mb-4 focus:bg-gray-600 focus:outline-none focus:ring-1 focus:ring-green-500 transition ease-in-out duration-150"
                       type="text"
                     />
                     <p className="text-green-300 text-xs -mt-3 italic">
@@ -116,7 +118,7 @@ export default function WaitingList() {
                     </p>
                     <button
                       onClick={handleVerify}
-                      class="bg-gradient-to-r flex text-center justify-center items-center m-auto w-full from-green-500 to-blue-500 text-white font-bold py-2 px-4 rounded-md mt-4 hover:bg-green-600 hover:to-green-600 transition  duration-700"
+                      className="bg-gradient-to-r flex text-center justify-center items-center m-auto w-full from-green-500 to-blue-500 text-white font-bold py-2 px-4 rounded-md mt-4 hover:bg-green-600 hover:to-green-600 transition  duration-700"
                       type="submit"
                     >
                       Verify
@@ -151,7 +153,7 @@ export default function WaitingList() {
                   <>
                     <button
                       onClick={handleSubmit}
-                      class="bg-gradient-to-r flex text-center justify-center items-center m-auto w-full from-green-500 to-blue-500 text-white font-bold py-2 px-4 rounded-md mt-4 hover:bg-green-600 hover:to-green-600 transition  duration-700"
+                      className="bg-gradient-to-r flex text-center justify-center items-center m-auto w-full from-green-500 to-blue-500 text-white font-bold py-2 px-4 rounded-md mt-4 hover:bg-green-600 hover:to-green-600 transition  duration-700"
                       type="submit"
                     >
                       Join
@@ -184,9 +186,9 @@ export default function WaitingList() {
                   </>
                 )}
               </div>
-            </form>
+            </div>
 
-            <div class="flex justify-center mt-4"></div>
+            <div className="flex justify-center mt-4"></div>
           </div>
         </div>
       ) : (

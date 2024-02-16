@@ -12,13 +12,14 @@ export default function withAuth(Component) {
     const router = useRouter();
     // eslint-disable-next-line react-hooks/rules-of-hooks
     useLayoutEffect(() => {
-      if (!session) {
+      if (typeof window !== "undefined" && !session) {
+        // Check if window is defined before executing client-side logic
         router.push("/Profile");
       }
-    }, []);
+    }, [session, router]);
     if (!session) {
       return null;
     }
-    return <Component {...props} />;
+    return session ? <Component {...props} /> : null;
   };
 }

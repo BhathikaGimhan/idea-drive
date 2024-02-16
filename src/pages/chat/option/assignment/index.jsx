@@ -1,8 +1,7 @@
 "use client";
 import Image from "next/image";
-import Link from "next/link";
 import Options from "../tools/Options";
-import { useEffect, useLayoutEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useRef } from "react";
 import jsPDF from "jspdf";
 import html2canvas from "html2canvas";
@@ -203,7 +202,7 @@ const Assignment = () => {
                 <button
                   onClick={() => setShowPdf(!showPdf)}
                   type="button"
-                  class="fixed flex justify-center items-center sm:ml-[33rem] max-sm:left-0 mt-[16rem] group  sm:rounded-e-xl max-sm:rounded-xl !shadow-green-900 transition-all duration-500 hover:!shadow-green-500 w-10 h-20 bg-[#10151d]"
+                  className="fixed flex justify-center items-center sm:ml-[33rem] max-sm:left-0 mt-[16rem] group  sm:rounded-e-xl max-sm:rounded-xl !shadow-green-900 transition-all duration-500 hover:!shadow-green-500 w-10 h-20 bg-[#10151d]"
                 >
                   <Image
                     src={"/images/icon/right.svg"}

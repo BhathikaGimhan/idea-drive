@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 "use client";
-import { Suspense, useLayoutEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import Image from "next/image";
 import ChatWindow from "./ChatWindow";
 import Translate from "./option/translate/Translate";
@@ -23,7 +23,7 @@ const Chat = () => {
 
   // const router = useRouter();
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     // const session = sessionState;
     // console.log(session);
     // if (!session) {

@@ -1,5 +1,5 @@
 "use client";
-import { useLayoutEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import { useSession, signOut, signIn } from "next-auth/react";
 import ComingSoon from "../components/ComingSoon";
@@ -16,7 +16,7 @@ export default function index() {
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const [role, setRole] = useState("");
   // eslint-disable-next-line react-hooks/rules-of-hooks
-  useLayoutEffect(() => {
+  useEffect(() => {
     fetchData();
     const isAdmin = session
       ? session.user.email === "bgmaduragoda@gmail.com"
