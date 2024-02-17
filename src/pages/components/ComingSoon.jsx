@@ -4,7 +4,7 @@ import Image from "next/image";
 export default function ComingSoon() {
   return (
     <div>
-      <div className="coming-soon border !border-green-950 rounded-3xl mr-10">
+      <div className="coming-soon border !border-green-950 rounded-3xl md:mr-10">
         <div className="body flex mt-5 flex-col justify-center items-center h-[50vh] ">
           <h2 className=" font-bold text-center animate-[pulse_1.5s_0s_ease-in-out_infinite] font-sans">
             Your Wallet is <br />

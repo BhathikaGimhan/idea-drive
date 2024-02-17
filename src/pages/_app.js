@@ -8,22 +8,10 @@ import Background from "./tools/background/Background";
 import { useEffect } from "react";
 import { useRouter } from "next/router";
 import Providers from "./components/Providers";
-import { getSession } from "next-auth/react";
+import { Inter } from "next/font/google";
+const inter = Inter({ subsets: ["latin"] });
 
 export default function App({ Component, pageProps }) {
-  const router = useRouter();
-
-  useEffect(() => {
-    const handleRouteChange = (url) => {
-      console.log("Loading", url);
-    };
-
-    router.events.on("routeChangeStart", handleRouteChange);
-
-    return () => {
-      router.events.off("routeChangeStart", handleRouteChange);
-    };
-  }, []);
   return (
     <>
       <Background />
@@ -35,7 +23,7 @@ export default function App({ Component, pageProps }) {
           <div className="file-explor ">
             <Header />
             <div className="folder-boody mt-10  ">
-              <div className="folder-view">
+              <div className={`folder-view ${inter.className}`}>
                 <Component {...pageProps} />
               </div>
             </div>
