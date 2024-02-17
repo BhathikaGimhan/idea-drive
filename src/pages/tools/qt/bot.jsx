@@ -3,20 +3,30 @@ import Image from "next/image";
 import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
 import { useSession } from "next-auth/react";
+import { useRouter } from "next/router";
 
 import Link from "next/link";
 
 export default function Bot() {
   const currentRoute = usePathname();
+  const routes = useRouter();
   const { data: session } = useSession();
 
   const [message, setMessage] = useState(false);
+  const [back, setBack] = useState("");
   const [chatRout, setChatRout] = useState(false);
   const handleClose = () => {
     setMessage(false);
   };
   const handleOpen = () => {
     setChatRout(!chatRout);
+    if (!chatRout) {
+      setBack(usePathname);
+      routes.push("/chat");
+    } else {
+      setBack("/chat");
+    }
+    // const j = routes.back();
   };
   useEffect(() => {
     if (currentRoute == "/chat") {
@@ -26,11 +36,11 @@ export default function Bot() {
         setMessage(true);
       }, 2000);
     }
-  }, [currentRoute]);
+  }, []);
 
   return (
     <>
-      <Link href={` ${chatRout ? "/" : "/chat"}`}>
+      <Link href={back}>
         <Image
           onClick={handleOpen}
           draggable="false"

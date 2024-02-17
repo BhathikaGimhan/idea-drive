@@ -2,6 +2,8 @@ import { useSession } from "next-auth/react";
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { useRouter } from "next/router";
+import { usePathname } from "next/navigation";
 
 export default function WaitingList() {
   const { data: session } = useSession();
@@ -10,6 +12,7 @@ export default function WaitingList() {
   const [user, setUser] = useState("user");
   const [code, setCode] = useState("");
   const [response, setResponse] = useState(0);
+  const path = usePathname();
 
   const [verify, setVerify] = useState(false);
   const [xxx, setXXX] = useState("");
@@ -29,14 +32,20 @@ export default function WaitingList() {
       // setLoading(false);
     }
   };
+  const router = useRouter();
 
   const handleVerify = (event) => {
     // Save data to local storage
     event.preventDefault();
     if (xxx === code) {
-      setResponse(3);
+      setResponse(2);
       setCode(code);
-      localStorage.removeItem("verify", JSON.stringify(code));
+      localStorage.setItem("verify", JSON.stringify(code));
+      setTimeout(() => {
+        router.reload(path);
+      }, 1000);
+
+      // console.log(path);
     } else {
       setResponse(9);
     }
