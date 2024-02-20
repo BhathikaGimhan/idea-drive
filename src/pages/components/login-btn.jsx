@@ -2,9 +2,20 @@
 import { useSession, signIn } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { useState, useEffect } from "react";
 
 export default function LoginBtn() {
   const { data: session } = useSession();
+  const route = usePathname();
+  const [url, setUrl] = useState("");
+  useEffect(() => {
+    if (route === "/Profile") {
+      setUrl("profile");
+    } else {
+      setUrl("");
+    }
+  }, [route]);
   if (session) {
     return (
       <>
@@ -21,7 +32,9 @@ export default function LoginBtn() {
               />
             </div>
             <div className="tool-tip group">LogOut</div>
-            <div className="side-active"></div>
+            <div
+              className={`side-active ${url === "profile" ? "" : "hidden"}`}
+            ></div>
           </div>
         </Link>
       </>
@@ -40,7 +53,6 @@ export default function LoginBtn() {
           />
         </div>
         <div className="tool-tip group">LogIn</div>
-        <div className="side-active"></div>
       </div>
     </>
   );

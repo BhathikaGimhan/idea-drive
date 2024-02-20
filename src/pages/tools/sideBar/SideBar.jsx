@@ -1,9 +1,26 @@
 "use client";
 import AppBar from "@/pages/components/AppBar";
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { usePathname } from "next/navigation";
+import Link from "next/link";
 
 export default function SideBar() {
+  const route = usePathname();
+  const [url, setUrl] = useState("");
+  useEffect(() => {
+    if (route === "/") {
+      setUrl("home");
+    } else if (route === "/About") {
+      setUrl("about");
+    } else if (route === "/Service") {
+      setUrl("services");
+    } else if (route === "/Contact") {
+      setUrl("contact");
+    } else {
+      setUrl("");
+    }
+  }, [route]);
   const [sideBar, setSideBar] = useState(true);
   const toggleSideBar = () => {
     setSideBar(!sideBar);
@@ -13,13 +30,15 @@ export default function SideBar() {
       <div className="side-bar-containt">
         {sideBar ? (
           <>
-            <Image
-              src={"/images/idea-drive-logo.png"}
-              alt="svg icon"
-              width={100}
-              height={100}
-              className="side-bar-icon max-md:-mt-1 md:z-50 logo absolute"
-            />
+            <Link href={"/"}>
+              <Image
+                src={"/images/idea-drive-logo.png"}
+                alt="svg icon"
+                width={100}
+                height={100}
+                className="side-bar-icon max-md:-mt-1 md:z-50 logo absolute"
+              />
+            </Link>
             <button onClick={toggleSideBar} className="menu-icon absolute">
               <Image
                 src={"/images/icon/menu.svg"}
@@ -47,13 +66,15 @@ export default function SideBar() {
               ""
             ) : (
               <>
-                <Image
-                  src={"/images/idea-drive-logo.png"}
-                  alt="svg icon"
-                  width={100}
-                  height={100}
-                  className="side-bar-icon max-md:-mt-12 max-md:-ml-[4rem] logo fixed z-50"
-                />
+                <Link href={"/"}>
+                  <Image
+                    src={"/images/idea-drive-logo.png"}
+                    alt="svg icon"
+                    width={100}
+                    height={100}
+                    className="side-bar-icon max-md:-mt-12 max-md:-ml-[4rem] logo fixed z-50"
+                  />
+                </Link>
                 <button onClick={toggleSideBar} className="md:hidden">
                   <Image
                     src={"/images/icon/close.svg"}
@@ -66,73 +87,95 @@ export default function SideBar() {
               </>
             )}
           </h1>
-          <div className={` side-bar-btn group md:mt-10 max-md:mt-20`}>
-            <div className="bar-icon">
-              <Image
-                src={"/images/icon/service.svg"}
-                alt="svg icon"
-                width={50}
-                height={50}
-                className="side-bar-icon"
-              />
+          <Link href={"/Service"}>
+            <div className={` side-bar-btn group md:mt-10 max-md:mt-20`}>
+              <div className="bar-icon">
+                <Image
+                  src={"/images/icon/service.svg"}
+                  alt="svg icon"
+                  width={50}
+                  height={50}
+                  className="side-bar-icon"
+                />
+              </div>
+              <div className="tool-tip group">Service</div>
+              <div
+                className={`side-active ${url === "services" ? "" : "hidden"}`}
+              ></div>
             </div>
-            <div className="tool-tip group">Service</div>
-            <div className="side-active"></div>
-          </div>
-          <div className="side-bar-btn group">
-            <div className="bar-icon">
-              <Image
-                src={"/images/icon/sms.svg"}
-                alt="svg icon"
-                width={50}
-                height={50}
-                className="side-bar-icon"
-              />
+          </Link>
+          <Link href={"/Contact"}>
+            <div className="side-bar-btn group">
+              <div className="bar-icon">
+                <Image
+                  src={"/images/icon/sms.svg"}
+                  alt="svg icon"
+                  width={50}
+                  height={50}
+                  className="side-bar-icon"
+                />
+              </div>
+              <div className="tool-tip group">Contact</div>
+              <div
+                className={`side-active ${url === "contact" ? "" : "hidden"}`}
+              ></div>
             </div>
-            <div className="tool-tip group">Contact</div>
-            <div className="side-active"></div>
-          </div>
-          <div className="side-bar-btn group">
-            <div className="bar-icon">
-              <Image
-                src={"/images/icon/members.svg"}
-                alt="svg icon"
-                width={50}
-                height={50}
-                className="side-bar-icon"
-              />
+          </Link>
+          <Link href={"/Innovation"}>
+            <div className="side-bar-btn group">
+              <div className="bar-icon">
+                <Image
+                  src={"/images/icon/members.svg"}
+                  alt="svg icon"
+                  width={50}
+                  height={50}
+                  className="side-bar-icon"
+                />
+              </div>
+              <div className="tool-tip group md:px-12 max-md:mt-4 md:mt-2">
+                Innovation
+              </div>
+              <div
+                className={`side-active ${
+                  url === "innovation" ? "" : "hidden"
+                }`}
+              ></div>
             </div>
-            <div className="tool-tip group md:px-12 max-md:mt-4 md:mt-2">
-              Innovation
+          </Link>
+          <Link href={"/Review"}>
+            <div className="side-bar-btn group">
+              <div className="bar-icon">
+                <Image
+                  src={"/images/icon/reviews.svg"}
+                  alt="svg icon"
+                  width={50}
+                  height={50}
+                  className="side-bar-icon"
+                />
+              </div>
+              <div className="tool-tip group">Review</div>
+              <div
+                className={`side-active ${url === "review" ? "" : "hidden"}`}
+              ></div>
             </div>
-            <div className="side-active"></div>
-          </div>
-          <div className="side-bar-btn group">
-            <div className="bar-icon">
-              <Image
-                src={"/images/icon/reviews.svg"}
-                alt="svg icon"
-                width={50}
-                height={50}
-                className="side-bar-icon"
-              />
+          </Link>
+          <Link href={"/About"}>
+            <div className="side-bar-btn group">
+              <div className="bar-icon">
+                <Image
+                  src={"/images/icon/about.svg"}
+                  alt="svg icon"
+                  width={50}
+                  height={50}
+                  className="rotate-180 side-bar-icon"
+                />
+              </div>
+              <div className="tool-tip group">About</div>
+              <div
+                className={`side-active ${url === "about" ? "" : "hidden"}`}
+              ></div>
             </div>
-            <div className="tool-tip group">Review</div>
-            <div className="side-active"></div>
-          </div>
-          <div className="side-bar-btn group">
-            <div className="bar-icon">
-              <Image
-                src={"/images/icon/about.svg"}
-                alt="svg icon"
-                width={50}
-                height={50}
-                className="rotate-180 side-bar-icon"
-              />
-            </div>
-            <div className="tool-tip group">About</div>
-            <div className="side-active"></div>
-          </div>
+          </Link>
           <AppBar />
         </div>
       </div>
