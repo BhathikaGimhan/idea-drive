@@ -466,7 +466,7 @@ body {
   @apply flex gap-10  justify-around flex-wrap pb-20;
 }
 .home-body .card {
-  @apply max-w-[28rem]  min-w-[80%] cursor-pointer overflow-hidden h-[15rem] !border-[#6e6e6e6e] hover:!border-[#747474] transition-all duration-500 bg-[#0000006e] border  rounded-3xl;
+  @apply max-w-[28rem]  min-w-[20rem] cursor-pointer overflow-hidden h-[15rem] !border-[#6e6e6e6e] hover:!border-[#747474] transition-all duration-500 bg-[#0000006e] border  rounded-3xl;
 }
 .home-body .card .icon {
   @apply m-5 w-20 !border-[#6e6e6e6e] h-20 flex justify-center items-center border rounded-full;
@@ -482,4 +482,24 @@ body {
 }
 .home-body .card .details p {
   @apply text-sm font-medium transition-all duration-500;
+}
+
+.slick-slide {
+  opacity: 0;
+  transition: opacity 0.5s ease-out;
+}
+
+.slick-active {
+  opacity: 1 !important;
+  transition: opacity 0.5s ease-in;
+}
+
+.slick-cloned {
+  opacity: 0.2;
+}
+.slick-slider {
+  @apply !w-[100%];
+}
+.slick-slider button {
+  @apply !absolute !hidden;
 }

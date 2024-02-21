@@ -1,86 +1,88 @@
 "use client";
 import React, { useEffect, useRef } from "react";
 import Slider from "react-slick";
-import Web from "./components/home/Web";
-import DigitalMarketing from "./components/home/DigitalMarketing";
-import Erp from "./components/home/Erp";
-import Graphic from "./components/home/Graphic";
-import Seo from "./components/home/Seo";
-import System from "./components/home/System";
-import App from "./components/home/App";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import Image from "next/image";
+import Link from "next/link";
 
 function TextAnimation() {
-  const CustomPrevArrow = (props) => (
-    <div
-      {...props}
-      className="custom-prev-arrow absolute top-[50%] bg-[#383838] transition-all duration-300 shadow-md shadow-black max-md:hidden cursor-pointer hover:bg-[#525252] p-2 rounded-full left-5 z-[999999999999]"
-      onClick={props.onClick}
-    >
-      {/* You can customize the appearance of the previous arrow here */}
-      {"arrow left"}
-    </div>
-  );
-
-  const CustomNextArrow = (props) => (
-    <div
-      {...props}
-      className="custom-next-arrow absolute top-[50%] bg-[#383838] transition-all duration-300 shadow-md shadow-black max-md:hidden cursor-pointer hover:bg-[#525252] p-2 rounded-full right-5 z-[999999999999]"
-      onClick={props.onClick}
-    >
-      {/* You can customize the appearance of the next arrow here */}
-      {"arrow right"}
-    </div>
-  );
   const sliderSettings = {
     autoplay: true,
     autoplaySpeed: 5000,
     infinite: true,
+    vertical: true,
+    prevArrow: false,
+    nextArrow: false,
     slidesToShow: 1,
     slidesToScroll: 1,
-    prevArrow: <CustomPrevArrow />,
-    nextArrow: <CustomNextArrow />,
+    prevArrow: false,
+    nextArrow: false,
+    verticalSwiping: false,
   };
   return (
-    <div className=" ">
-      <div className="">
+    <div className="justify-center flex items-center mt-0">
+      <Image
+        width={300}
+        height={300}
+        src={"/images/idea-drive-logo.png"}
+        alt="logo"
+        className="absolute -z-50 -mt-40 opacity-30 blur-md animate-pulse"
+      />
+      <div className="text-5xl text-center max-lg:text-3xl max-sm:text-xl">
+        Welcome To{" "}
+        <span className="text-green-500 text-6xl text-center max-lg:text-4xl max-sm:text-2xl">
+          Idea Drive,
+        </span>
+        <br /> We will{" "}
+        <span className="text-purple-600 ext-6xl text-center max-lg:text-4xl max-sm:text-2xl">
+          Develop
+        </span>{" "}
+        Your
         <Slider {...sliderSettings}>
-          <div className="m-10">
-            <div className="home-body">
-              <div className="card group">
-                <div className="icon">
-                  <div className="image group-hover:shadow-[0px_0px_10px#2aff2a] shadow-[3px_3px_10px#10cc1060]" />
-                </div>
-                <div className="details">
-                  <h1 className="text-green-100 group-hover:text-white">
-                    {"asdfasdf"}
-                  </h1>
-                  <p className="text-green-100 group-hover:text-white">
-                    {"sdfadsafasdasdfadsff asdfa sdfasdf "}
-                  </p>
-                </div>
-              </div>
+          <div className="home-component w-full">
+            <div className="home-text  py-1">
+              <h1 className="">ideas</h1>
             </div>
           </div>
-          <div className="m-10">
-            <div className="home-body">
-              <div className="card group">
-                <div className="icon">
-                  <div className="image group-hover:shadow-[0px_0px_10px#2aff2a] shadow-[3px_3px_10px#10cc1060]" />
-                </div>
-                <div className="details">
-                  <h1 className="text-green-100 group-hover:text-white">
-                    {"asdfasdf"}
-                  </h1>
-                  <p className="text-green-100 group-hover:text-white">
-                    {"sdfadsafasdasdfadsff asdfa sdfasdf "}
-                  </p>
-                </div>
-              </div>
+          <div className="home-component">
+            <div className="home-text py-1">
+              <h1 className="">Websites</h1>
+            </div>
+          </div>
+          <div className="home-component">
+            <div className="home-text py-1">
+              <h1 className="">Designs</h1>
+            </div>
+          </div>
+          <div className="home-component">
+            <div className="home-text py-1">
+              <h1 className="">Software</h1>
+            </div>
+          </div>
+          <div className="home-component">
+            <div className="home-text py-1">
+              <h1 className="">Mobile Applications</h1>
+            </div>
+          </div>
+          <div className="home-component">
+            <div className="home-text py-1">
+              <h1 className="">Company&apos;s Creations</h1>
             </div>
           </div>
         </Slider>
+        <h2 className=" flex flex-col text-4xl mt-20 justify-center items-center">
+          check over service <br />
+          <Link href={"/Service"}>
+            <Image
+              src={"images/icon/right.svg"}
+              width={30}
+              height={30}
+              alt="icon"
+              className=" px-3 py-1 rounded-full bg-green-950 hover:bg-green-500 transition-all duration-700 w-20 h-10 "
+            />
+          </Link>
+        </h2>
       </div>
     </div>
   );
