@@ -88,7 +88,10 @@ export default function index() {
               {session ? (
                 <button
                   className="px-4 py-2 flex w-full justify-center items-center m-auto bg-red-700 rounded-xl"
-                  onClick={() => signOut()}
+                  onClick={() => {
+                    localStorage.clear();
+                    signOut();
+                  }}
                 >
                   Log out
                   <Image

@@ -303,7 +303,7 @@ body {
   @apply w-10 max-md:ml-5 max-md:mt-5;
 }
 .tool-tip {
-  @apply relative ml-16 max-md:ml-32 md:scale-0 max-md:group-hover:scale-125 bg-[#ffffff96] md:bg-[#10151d] md:border md:p-2 md:px-10 md:rounded-full md:border-[#1f3b1d93] md:ml-2 md:group-hover:translate-x-11 md:backdrop-blur-[40px] md:w-full md:group-hover:scale-100 transition-all duration-500 top-0 left-0 flex justify-center items-center;
+  @apply relative ml-16 max-md:ml-32 md:scale-0 max-md:group-hover:scale-125 bg-[#ffffff96] md:bg-[#10151d] md:border md:p-2 md:px-10 md:rounded-full md:border-[#1f3b1d93] md:ml-2 md:group-hover:translate-x-11 md:backdrop-blur-[40px] md:w-full md:group-hover:scale-100 transition-all duration-500 top-0 left-0 flex m-auto justify-center items-center;
 }
 .bar-icon {
   @apply w-[45px] absolute max-md:group-hover:scale-125 transition-all duration-500;

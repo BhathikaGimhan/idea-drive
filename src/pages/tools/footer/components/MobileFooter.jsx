@@ -85,13 +85,22 @@ const MobileFooter = () => {
             className={`contact col flex flex-col justify-center items-center m-auto pt-2 pb-5`}
           >
             <p className="text-center pb-3 pt-[1.9rem]">
-              {" "}
-              Phone : <span className=" ">(+94)77 662 051 980</span>{" "}
+              <a href="tel:+94776685719">
+                Whatsapp:{" "}
+                <samp className=" text-green-400 hover:text-green-300">
+                  (+94)77 668 5719
+                </samp>
+              </a>
             </p>
             <br />
             <p className="text-center">
-              {" "}
-              Email : <span className="">ideadrive.info@gmail.com</span>
+              <a className="flex" href="mailto:ideadrive.info@gmail.com">
+                Email:{" "}
+                <samp className=" ml-1 text-green-400 hover:text-green-300">
+                  {" "}
+                  ideadrive.info@gmail.com
+                </samp>
+              </a>
             </p>
           </div>
         ) : selectedIcon === "location" ? (

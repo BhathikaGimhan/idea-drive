@@ -17,6 +17,10 @@ export default function SideBar() {
       setUrl("services");
     } else if (route === "/Contact") {
       setUrl("contact");
+    } else if (route === "/Innovation") {
+      setUrl("Innovation");
+    } else if (route === "/Review") {
+      setUrl("Review");
     } else {
       setUrl("");
     }
@@ -58,7 +62,7 @@ export default function SideBar() {
         <div
           className={`side-bar ${
             sideBar ? "max-md:-ml-[15rem]" : "max-md:-ml-1"
-          } fixed h-full max-md:w-60 max-md:shadow-xl md:-mt-10 transition-all duration-300 !shadow-black max-md:border max-md:border-[#129e003a] bg-[#00000000] backdrop-blur-[8px] p-2 flex flex-col md:justify-center gap-10`}
+          } fixed h-full max-md:w-60 max-md:shadow-xl md:-mt-10 transition-all duration-300 !shadow-black max-md:border max-md:border-[#129e003a] bg-[#ffffff00] backdrop-blur-[8px] p-2 flex flex-col md:justify-center gap-10`}
         >
           <h1 className="sidebar-heading md:hidden absolute mt-3 ml-16 font-extrabold">
             IDEA DRIVE
@@ -105,7 +109,7 @@ export default function SideBar() {
             </div>
           </Link>
           <Link href={"/Contact"}>
-            <div className="side-bar-btn group">
+            <div className="side-bar-btn md:-mb-5 group">
               <div className="bar-icon">
                 <Image
                   src={"/images/icon/sms.svg"}
@@ -137,7 +141,7 @@ export default function SideBar() {
               </div>
               <div
                 className={`side-active ${
-                  url === "innovation" ? "" : "hidden"
+                  url === "Innovation" ? "" : "hidden"
                 }`}
               ></div>
             </div>
@@ -155,7 +159,7 @@ export default function SideBar() {
               </div>
               <div className="tool-tip group">Review</div>
               <div
-                className={`side-active ${url === "review" ? "" : "hidden"}`}
+                className={`side-active ${url === "Review" ? "" : "hidden"}`}
               ></div>
             </div>
           </Link>

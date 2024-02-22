@@ -21,7 +21,7 @@ function TextAnimation() {
     verticalSwiping: false,
   };
   return (
-    <div className="justify-center flex items-center mt-0">
+    <div className="justify-center font-medium flex items-center mt-0">
       <Image
         width={300}
         height={300}
@@ -71,18 +71,31 @@ function TextAnimation() {
             </div>
           </div>
         </Slider>
-        <h2 className=" flex flex-col text-4xl mt-20 justify-center items-center">
-          check over service <br />
-          <Link href={"/Service"}>
-            <Image
-              src={"images/icon/right.svg"}
-              width={30}
-              height={30}
-              alt="icon"
-              className=" px-3 py-1 rounded-full bg-green-950 hover:bg-green-500 transition-all duration-700 w-20 h-10 "
-            />
-          </Link>
-        </h2>
+        <div className="flex flex-col text-center items-center justify-center m-auto mt-10">
+          <h2 className="text-4xl max-md:text-2xl max-sm:text-lg mb-6">
+            Explore Our Services
+          </h2>
+          <div className="flex flex-col items-center justify-center">
+            <p className="text-lg  max-md:text-sm ">Check out our services:</p>
+            <Link href={"/Service"}>
+              <div className="null">
+                <button className="group mt-4 flex items-center justify-start w-12 h-12 max-md:w-8 max-md:h-8 bg-green-600 rounded-full cursor-pointer relative overflow-hidden transition-all duration-200 shadow-lg hover:w-40 hover:rounded-lg active:translate-x-1 active:translate-y-1">
+                  <div className="flex items-center justify-center w-full transition-all duration-300 group-hover:justify-start group-hover:px-3">
+                    <Image
+                      src={"images/icon/right.svg"}
+                      width={40}
+                      height={40}
+                      alt="icon"
+                    />
+                  </div>
+                  <div className="absolute right-5 transform translate-x-full opacity-0 text-white text-lg font-semibold transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100">
+                    View More
+                  </div>
+                </button>
+              </div>
+            </Link>
+          </div>
+        </div>
       </div>
     </div>
   );
