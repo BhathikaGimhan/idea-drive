@@ -36,8 +36,6 @@ export default function index() {
       const jsonData = await response.json();
       setCode(jsonData[0].code);
       setRole(jsonData[0].user);
-      // setVerify(true);
-      // setLoading(false);
     } catch (error) {
       console.log(error.message);
       // setLoading(false);
