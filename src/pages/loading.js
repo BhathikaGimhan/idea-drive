@@ -21,6 +21,7 @@ export default function Loading() {
       router.events.off("routeChangeComplete", stopLoading);
       router.events.off("routeChangeError", stopLoading);
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
     <main

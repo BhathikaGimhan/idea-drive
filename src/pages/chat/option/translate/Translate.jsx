@@ -48,7 +48,8 @@ export default function Translate({ ontranslate, clearTranslationInput }) {
 
   useEffect(() => {
     translateText(inputText);
-  }, [inputText]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   return (
     <div className="translate">
       <div

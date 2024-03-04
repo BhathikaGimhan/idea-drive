@@ -5,7 +5,7 @@ import {
   where,
   getDocs,
 } from "firebase/firestore";
-import app from "../../firebase";
+import { app } from "../../../../utils/firebaseConnection";
 import { getSession } from "next-auth/react";
 
 const firestore = getFirestore(app);

@@ -10,7 +10,7 @@ const formatMessage = (message, index) => {
       <div key={index} className="py-5">
         <div className="w-10 absolute -mt-2 md:-ml-4 max-md:-ml-8 h-10 bg-green-600 font-bold rounded-full flex justify-center items-center">
           QT
-        </div>{" "}
+        </div>
         <ReactMarkdown className="ai-chat" components={{ code: CodeBlock }}>
           {message.parts}
         </ReactMarkdown>
@@ -53,7 +53,7 @@ const CodeBlock = ({ node, inline, className, children, ...props }) => {
 const ChatWindow = ({ chatHistory }) => {
   return (
     <div className=" ">
-      {chatHistory.map((message, index) => formatMessage(message, index))}
+      {chatHistory?.map((message, index) => formatMessage(message, index))}
     </div>
   );
 };

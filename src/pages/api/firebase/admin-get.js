@@ -1,5 +1,5 @@
 import { getFirestore, collection, getDocs } from "firebase/firestore";
-import app from "../../firebase";
+import { app } from "../../../../utils/firebaseConnection";
 
 const firestore = getFirestore(app);
 

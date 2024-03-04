@@ -5,8 +5,6 @@ import SideBar from "./tools/sideBar/SideBar";
 import NextNProgress from "nextjs-progressbar";
 import Bot from "./tools/qt/bot";
 import Background from "./tools/background/Background";
-import { useEffect } from "react";
-import { useRouter } from "next/router";
 import Providers from "./components/Providers";
 import { Inter } from "next/font/google";
 const inter = Inter({ subsets: ["latin"] });
