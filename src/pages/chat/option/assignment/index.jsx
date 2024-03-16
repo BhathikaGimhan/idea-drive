@@ -163,159 +163,156 @@ const Assignment = () => {
     }
   };
 
-  const [sssss, setShow] = useState(false);
-  useEffect(() => {
-    // const session = sessionState;
-    // console.log(session);
-    // if (!session) {
-    //   router.push("/");
-    // }
-    // localStorage.getItem("verify");
-    if (localStorage.getItem("verify") === null) {
-      setShow(true);
-    }
-  }, []);
+  // const [sssss, setShow] = useState(false);
+  // useEffect(() => {
+  //   // const session = sessionState;
+  //   // console.log(session);
+  //   // if (!session) {
+  //   //   router.push("/");
+  //   // }
+  //   // localStorage.getItem("verify");
+  //   if (localStorage.getItem("verify") === null) {
+  //     setShow(true);
+  //   }
+  // }, []);
   return (
     <>
-      {sssss ? (
+      {/* {sssss ? (
         <Access />
-      ) : (
-        <div className="assignment-body">
-          <Image
-            src={"/images/assignment.webp"}
-            alt="svg icon"
-            className="absolute -right-10 -bottom-5 -z-[999999] opacity-10"
-            width={400}
-            height={100}
-          />
-          <div className=" relative mt-2">
-            <div className="form-veiw -mt-10  ">
-              {showPdf ? (
-                <div className="owal w-screen h-[200vh] -mt-52 fixed bg-[#0000009a]"></div>
-              ) : null}
+      ) : ( */}
+      <div className="assignment-body">
+        <Image
+          src={"/images/assignment.webp"}
+          alt="svg icon"
+          className="absolute -right-10 -bottom-5 -z-[999999] opacity-10"
+          width={400}
+          height={100}
+        />
+        <div className=" relative mt-2">
+          <div className="form-veiw -mt-10  ">
+            {showPdf ? (
+              <div className="owal w-screen h-[200vh] -mt-52 fixed bg-[#0000009a]"></div>
+            ) : null}
 
-              <div
-                className={` pdf-view-class right mt-9 fixed  z-50 transition-all max-w-fit duration-700 ${
-                  showPdf ? "left-0" : "-left-[530px]"
-                }  bg-[#10151d]  max-h-[77vh] max-md:mt-10 overflow-auto `}
+            <div
+              className={` pdf-view-class right mt-9 fixed  z-50 transition-all max-w-fit duration-700 ${
+                showPdf ? "left-0" : "-left-[530px]"
+              }  bg-[#10151d]  max-h-[77vh] max-md:mt-10 overflow-auto `}
+            >
+              <button
+                onClick={() => setShowPdf(!showPdf)}
+                type="button"
+                className="fixed flex justify-center items-center sm:ml-[33rem] max-sm:left-0 mt-[16rem] group  sm:rounded-e-xl max-sm:rounded-xl !shadow-green-900 transition-all duration-500 hover:!shadow-green-500 w-10 h-20 bg-[#10151d]"
               >
-                <button
-                  onClick={() => setShowPdf(!showPdf)}
-                  type="button"
-                  className="fixed flex justify-center items-center sm:ml-[33rem] max-sm:left-0 mt-[16rem] group  sm:rounded-e-xl max-sm:rounded-xl !shadow-green-900 transition-all duration-500 hover:!shadow-green-500 w-10 h-20 bg-[#10151d]"
-                >
-                  <Image
-                    src={"/images/icon/right.svg"}
-                    width={30}
-                    height={30}
-                    className={`group-hover:animate-pulse ${
-                      showPdf ? "rotate-180" : "rotate-0"
-                    }`}
-                    alt="icon"
-                  />
-                </button>
-                <div className=" overflow-auto -z-50">
-                  <div className=" m-2 sm:w-[518px] max-sm:w-[87vw] text-white bg-black">
-                    <div className="max-sm:m-10">
-                      <MyDocument
-                        receivedValues={receivedValues}
-                        message={chatHistory}
-                      />
-                    </div>
+                <Image
+                  src={"/images/icon/right.svg"}
+                  width={30}
+                  height={30}
+                  className={`group-hover:animate-pulse ${
+                    showPdf ? "rotate-180" : "rotate-0"
+                  }`}
+                  alt="icon"
+                />
+              </button>
+              <div className=" overflow-auto -z-50">
+                <div className=" m-2 sm:w-[518px] max-sm:w-[87vw] text-white bg-black">
+                  <div className="max-sm:m-10">
+                    <MyDocument
+                      receivedValues={receivedValues}
+                      message={chatHistory}
+                    />
                   </div>
                 </div>
               </div>
-              <div className="left ml-10  py-10">
-                <div className=" mt-0 right-0">
-                  <Front valuesToSend={valuesToSend} onSend={handleSend} />
-                  <div className="button-section gap-3 mx-7 pb-5 flex flex-col">
-                    <div className="chooos flex gap-1 w-full">
-                      <button
-                        className={`px-2 py-1 ${
-                          button === 3 ? "" : "hidden"
-                        } border transition-all w-full duration-400 flex justify-center items-center hover:bg-green-950 !border-green-500 rounded-full `}
-                        onClick={() => handleDownloadPdf(1)}
-                      >
-                        <Image
-                          src={`/images/icon/${
-                            loading === 1 ? "loading.svg" : "pen.svg"
-                          }`}
-                          className={`${loading === 1 ? "animate-spin" : ""}`}
-                          width={20}
-                          height={20}
-                          alt="icon"
-                        />
-                        Download
-                      </button>
-                      <button
-                        onClick={() => handleDownloadPdf(2)}
-                        className={`px-2 py-1 ${
-                          button === 3 ? "" : "hidden"
-                        } border transition-all w-full flex justify-center items-center duration-400 hover:bg-green-950 !border-green-500 rounded-full `}
-                      >
-                        <Image
-                          src={`/images/icon/${
-                            loading === 2 ? "loading.svg" : "type.svg"
-                          }`}
-                          className={`${loading === 2 ? "animate-spin" : ""}`}
-                          width={20}
-                          height={20}
-                          alt="icon"
-                        />
-                        Download
-                      </button>
-                    </div>
+            </div>
+            <div className="left ml-10  py-10">
+              <div className=" mt-0 right-0">
+                <Front valuesToSend={valuesToSend} onSend={handleSend} />
+                <div className="button-section gap-3 mx-7 pb-5 flex flex-col">
+                  <div className="chooos flex gap-1 w-full">
                     <button
-                      className={`px-2 py-1 border flex justify-center transition-all duration-400 hover:bg-green-950 !border-green-500 rounded-full `}
-                      onClick={genarate}
+                      className={`px-2 py-1 ${
+                        button === 3 ? "" : "hidden"
+                      } border transition-all w-full duration-400 flex justify-center items-center hover:bg-green-950 !border-green-500 rounded-full `}
+                      onClick={() => handleDownloadPdf(1)}
                     >
-                      Genarate PDF
-                      {button === 2 ? (
-                        <Image
-                          className="ml-5 animate-spin"
-                          width={20}
-                          height={20}
-                          src={"/images/icon/loading.svg"}
-                          alt="Logo"
-                        />
-                      ) : (
-                        ""
-                      )}
+                      <Image
+                        src={`/images/icon/${
+                          loading === 1 ? "loading.svg" : "pen.svg"
+                        }`}
+                        className={`${loading === 1 ? "animate-spin" : ""}`}
+                        width={20}
+                        height={20}
+                        alt="icon"
+                      />
+                      Download
+                    </button>
+                    <button
+                      onClick={() => handleDownloadPdf(2)}
+                      className={`px-2 py-1 ${
+                        button === 3 ? "" : "hidden"
+                      } border transition-all w-full flex justify-center items-center duration-400 hover:bg-green-950 !border-green-500 rounded-full `}
+                    >
+                      <Image
+                        src={`/images/icon/${
+                          loading === 2 ? "loading.svg" : "type.svg"
+                        }`}
+                        className={`${loading === 2 ? "animate-spin" : ""}`}
+                        width={20}
+                        height={20}
+                        alt="icon"
+                      />
+                      Download
                     </button>
                   </div>
+                  <button
+                    className={`px-2 py-1 border flex justify-center transition-all duration-400 hover:bg-green-950 !border-green-500 rounded-full `}
+                    onClick={genarate}
+                  >
+                    Genarate PDF
+                    {button === 2 ? (
+                      <Image
+                        className="ml-5 animate-spin"
+                        width={20}
+                        height={20}
+                        src={"/images/icon/loading.svg"}
+                        alt="Logo"
+                      />
+                    ) : (
+                      ""
+                    )}
+                  </button>
                 </div>
               </div>
-            </div>
-          </div>
-          <div className="chat-btn mb-0 z-50 !bg-[#10151d] absolute h-16 rounded-r-full  bottom-0 left-0 w-16 ">
-            <div className="fixed bg-[#10151d] z-50 flex left-5 pr-10 w-full mt-6">
-              <div className="flex flex-col gap-5 -mt-5 pr-5">
-                <Options handleClick={handleOptionClick} />
-              </div>
-            </div>
-          </div>
-          <div className="fixed -left-[100rem]">
-            <div
-              id="pdf"
-              className={`${
-                download === 1
-                  ? "font-[hand1] w-[140mm] text-[#080077] bg-white"
-                  : download === 2
-                  ? "w-[140mm] text-[#000] bg-white  font-serif"
-                  : ""
-              }`}
-              ref={reportTemplateRef}
-            >
-              <MyDocument
-                receivedValues={receivedValues}
-                message={chatHistory}
-              />
             </div>
           </div>
         </div>
-      )}
+        <div className="chat-btn mb-0 z-50 !bg-[#10151d] absolute h-16 rounded-r-full  bottom-0 left-0 w-16 ">
+          <div className="fixed bg-[#10151d] z-50 flex left-5 pr-10 w-full mt-6">
+            <div className="flex flex-col gap-5 -mt-5 pr-5">
+              <Options handleClick={handleOptionClick} />
+            </div>
+          </div>
+        </div>
+        <div className="fixed -left-[100rem]">
+          <div
+            id="pdf"
+            className={`${
+              download === 1
+                ? "font-[hand1] w-[140mm] text-[#080077] bg-white"
+                : download === 2
+                ? "w-[140mm] text-[#000] bg-white  font-serif"
+                : ""
+            }`}
+            ref={reportTemplateRef}
+          >
+            <MyDocument receivedValues={receivedValues} message={chatHistory} />
+          </div>
+        </div>
+      </div>
+      {/* )} */}
     </>
   );
 };
 
-export default withAuth(Assignment);
+export default Assignment;

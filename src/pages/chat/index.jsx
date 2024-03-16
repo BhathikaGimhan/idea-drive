@@ -19,21 +19,21 @@ const Chat = () => {
   const [clearTranslationInput, setTranslateInput] = useState(false);
   const [option, setOption] = useState("chat");
   const [loading, setLoadning] = useState(false);
-  const [show, setShow] = useState(false);
+  // const [show, setShow] = useState(false);
 
   // const router = useRouter();
 
-  useEffect(() => {
-    // const session = sessionState;
-    // console.log(session);
-    // if (!session) {
-    //   router.push("/");
-    // }
-    // localStorage.getItem("verify");
-    if (localStorage.getItem("verify") === null) {
-      setShow(true);
-    }
-  }, []);
+  // useEffect(() => {
+  //   // const session = sessionState;
+  //   // console.log(session);
+  //   // if (!session) {
+  //   //   router.push("/");
+  //   // }
+  //   // localStorage.getItem("verify");
+  //   if (localStorage.getItem("verify") === null) {
+  //     setShow(true);
+  //   }
+  // }, []);
 
   const [chatHistory, setChatHistory] = useState([
     {
@@ -112,67 +112,65 @@ const Chat = () => {
 
   return (
     <>
-      {show ? (
+      {/* {show ? (
         <Access />
-      ) : (
-        <div className="chat-body">
-          <div className="chat max-w-full overflow-x-auto">
-            <div className="chat-view -z-10 relative w-full mb-[5.5rem]">
-              <Suspense fallback={<Loading />}>
-                <ChatWindow chatHistory={chatHistory} />
-              </Suspense>
-            </div>
+      ) : ( */}
+      <div className="chat-body">
+        <div className="chat max-w-full overflow-x-auto">
+          <div className="chat-view -z-10 relative w-full mb-[5.5rem]">
+            <Suspense fallback={<Loading />}>
+              <ChatWindow chatHistory={chatHistory} />
+            </Suspense>
+          </div>
 
-            <div className="chat-btn mb-0 z-50 !bg-[#10151d] absolute h-20  bottom-0 left-0 w-full ">
-              <div className="fixed bg-[#10151d] z-50 flex bottom-5 left-5 pr-10 w-full mt-6">
-                {option == "translate" ? (
-                  <Translate
-                    ontranslate={(translatedText) =>
-                      setTranslate(translatedText)
-                    }
-                    clearTranslationInput={clearTranslationInput}
-                  />
-                ) : (
-                  ""
-                )}
-                <div className="flex flex-col gap-5 pr-5">
-                  <Options handleClick={handleOptionClick} />
-                </div>
-
-                <input
-                  value={option === "translate" ? translate : value}
-                  onClick={(e) => e.stopPropagation()}
-                  onChange={(e) => setValue(e.target.value)}
-                  type="text"
-                  placeholder="Chat here..."
-                  className="chat-input"
+          <div className="chat-btn mb-0 z-50 !bg-[#10151d] absolute h-20  bottom-0 left-0 w-full ">
+            <div className="fixed bg-[#10151d] z-50 flex bottom-5 left-5 pr-10 w-full mt-6">
+              {option == "translate" ? (
+                <Translate
+                  ontranslate={(translatedText) => setTranslate(translatedText)}
+                  clearTranslationInput={clearTranslationInput}
                 />
-                <div className="send-btn">
-                  <button onClick={sendMessage}>
-                    {loading ? (
-                      <Image
-                        src="/images/icon/loading.svg"
-                        width={30}
-                        height={30}
-                        alt="svg icon"
-                        className="animate-spin"
-                      />
-                    ) : (
-                      <Image
-                        src="/images/icon/send.svg"
-                        width={30}
-                        height={30}
-                        alt="svg icon"
-                      />
-                    )}
-                  </button>
-                </div>
+              ) : (
+                ""
+              )}
+              <div className="flex flex-col gap-5 pr-5">
+                <Options handleClick={handleOptionClick} />
+              </div>
+
+              <input
+                value={option === "translate" ? translate : value}
+                onClick={(e) => e.stopPropagation()}
+                onChange={(e) => setValue(e.target.value)}
+                type="text"
+                placeholder="Chat here..."
+                className="chat-input"
+              />
+              <div className="send-btn">
+                <button onClick={sendMessage}>
+                  {loading ? (
+                    <Image
+                      src="/images/icon/loading.svg"
+                      width={30}
+                      height={30}
+                      alt="svg icon"
+                      className="animate-spin"
+                    />
+                  ) : (
+                    <Image
+                      src="/images/icon/send.svg"
+                      width={30}
+                      height={30}
+                      alt="svg icon"
+                    />
+                  )}
+                </button>
               </div>
             </div>
           </div>
         </div>
-      )}
+      </div>
+      {/* )} */}
     </>
   );
 };
-export default withAuth(Chat);
+export default Chat;
