@@ -33,7 +33,7 @@ const Contact = () => {
     } else {
       // Ai genarated message
       const genAI = new GoogleGenerativeAI(
-        "AIzaSyArDcvm4OUPx45Uv-fVGulbsgQYPnIjuM8"
+        "AIzaSyCUGN-a3ZBs5Xi52hCzlzKR2ELUMAdiwX4"
       );
 
       async function run() {
@@ -251,7 +251,6 @@ const Contact = () => {
                     >
                       Your Message
                     </label>
-                    useEffect
                     <div className="relative">
                       <textarea
                         name="message"

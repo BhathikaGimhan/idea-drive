@@ -74,13 +74,13 @@ export default function Bot() {
         <div className="button-section flex gap-4">
           {session ? (
             <p>
-              Hello {session.user.name} im QT bot... <br />
+              Hello {session.user.name} i&rsquo;m QT bot... <br />
               you can chat with me. please click me for chat.
             </p>
           ) : (
             <p>
-              . im QT bot... <br />
-              you can chat with me. please click me for chat.
+              Hello i&rsquo;m QT bot... <br />
+              You can chat with me. please click me for chat.
             </p>
           )}
         </div>

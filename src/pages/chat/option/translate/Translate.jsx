@@ -3,7 +3,7 @@ import Image from "next/image";
 import { useState, useEffect } from "react";
 const TextTranslationClient =
   require("@azure-rest/ai-translation-text").default;
-const apiKey = "82765534d6a742b498a9438ce2da831f";
+const apiKey = "cbcd0cd30f37449595f0b8996e4a75ff";
 const endpoint = "https://api.cognitive.microsofttranslator.com/";
 const region = "southeastasia";
 
@@ -39,6 +39,7 @@ export default function Translate({ ontranslate, clearTranslationInput }) {
       if (translations.length > 0) {
         const translatedText = translations[0]?.translations[0]?.text;
         setTranslatedText(translatedText);
+        // console.log(translatedText);
         ontranslate(translatedText); // Pass the translated text to the parent component
       }
     } catch (error) {
@@ -46,10 +47,12 @@ export default function Translate({ ontranslate, clearTranslationInput }) {
     }
   }
 
-  useEffect(() => {
-    translateText(inputText);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  function handleInputChange(e) {
+    const text = e.target.value;
+    setInputText(text);
+    translateText(text); // Call translateText function on input change
+  }
+
   return (
     <div className="translate">
       <div
@@ -79,7 +82,7 @@ export default function Translate({ ontranslate, clearTranslationInput }) {
         <input
           type="text"
           value={clearTranslationInput ? "" : inputText}
-          onChange={(e) => setInputText(e.target.value)}
+          onChange={handleInputChange}
           className={`chat-input bg-[#10151d] mr-5 ml-5 !w-full h-14  !border-green-500 ${
             !expanded ? "!hidden" : ""
           }`}

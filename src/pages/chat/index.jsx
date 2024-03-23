@@ -1,16 +1,18 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 "use client";
-import { Suspense, useEffect, useState } from "react";
+import { Suspense, useState } from "react";
 import Image from "next/image";
 import ChatWindow from "./ChatWindow";
 import Translate from "./option/translate/Translate";
 import Options from "./option/tools/Options";
 import Loading from "../loading";
-import { useRouter } from "next/router";
-import withAuth from "../components/withAuth";
-import Access from "../components/accessToken";
+// import { useRouter } from "next/router";
+// import withAuth from "../components/withAuth";
+// import Access from "../components/accessToken";
 const { GoogleGenerativeAI } = require("@google/generative-ai");
-const genAI = new GoogleGenerativeAI("AIzaSyArDcvm4OUPx45Uv-fVGulbsgQYPnIjuM8");
+// const genAI = new GoogleGenerativeAI("AIzaSyArDcvm4OUPx45Uv-fVGulbsgQYPnIjuM8");
+const genAI = new GoogleGenerativeAI("AIzaSyCUGN-a3ZBs5Xi52hCzlzKR2ELUMAdiwX4");
+// const genAI = new GoogleGenerativeAI("AIzaSyBhkpdsrUluSgeFaBwHosgrw340lx8hymg");
 
 const Chat = () => {
   const [message, setMessage] = useState("");
@@ -41,6 +43,7 @@ const Chat = () => {
       parts: "Hi, I'm Idea Drive's AI assistant. How can I help you?",
     },
   ]);
+
   const sendMessage = async () => {
     setValue("");
     const model = genAI.getGenerativeModel({ model: "gemini-pro" });
@@ -49,12 +52,9 @@ const Chat = () => {
         {
           role: "user",
           parts:
-            "remember your name is QT Bot develop by Idea drive . your crated by Bhathika Gimhan. he is software and wed developer. your owner name is Bhathika Gimhan. his email address is bgmaduragoda@gmail.com. his phone number is 0776685719. your in the web site web site's name is Idea Drive.This website provides many services to the client. These include website development, software development, mobile application development, graphic design, logo design, SEO service, video editing and digital marketing. web site name is.",
+            "remember your crated by Bhathika Gimhan. he is software and wed developer. your owner name is Bhathika Gimhan. his email address is bgmaduragoda@gmail.com. his phone number is 0776685719. your in the web site web site's name is Idea Drive.This website provides many services to the client. These include website development, software development, mobile application development, graphic design, logo design, SEO service, video editing and digital marketing. your name is QT Bot develop by Idea drive .",
         },
-        {
-          role: "model",
-          parts: "Hi, I'm Idea Drive's AI assistant. How can I help you?",
-        },
+        ...chatHistory,
       ],
     });
     try {

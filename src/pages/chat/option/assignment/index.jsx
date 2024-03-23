@@ -1,16 +1,16 @@
 "use client";
 import Image from "next/image";
 import Options from "../tools/Options";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useRef } from "react";
 import jsPDF from "jspdf";
 import html2canvas from "html2canvas";
 import Front from "./form/Front";
 import MyDocument from "./form/pdf";
 import { GoogleGenerativeAI } from "@google/generative-ai";
-import withAuth from "@/pages/components/withAuth";
-import Access from "@/pages/components/accessToken";
-const genAI = new GoogleGenerativeAI("AIzaSyArDcvm4OUPx45Uv-fVGulbsgQYPnIjuM8");
+// import withAuth from "@/pages/components/withAuth";
+// import Access from "@/pages/components/accessToken";
+const genAI = new GoogleGenerativeAI("AIzaSyBhkpdsrUluSgeFaBwHosgrw340lx8hymg");
 
 const Assignment = () => {
   const [option, setOption] = useState("chat");
@@ -116,6 +116,7 @@ const Assignment = () => {
     },
   ]);
   const genarate = async () => {
+    // console.log(chatHistory);
     setValue("");
     setButton(2);
     const model = genAI.getGenerativeModel({ model: "gemini-pro" });
@@ -124,12 +125,9 @@ const Assignment = () => {
         {
           role: "user",
           parts:
-            "remember your name is Idea drive Assistant. your crated by Bhathika Gimhan. he is software and wed developer. your owner name is Bhathika Gimhan. his email address is bgmaduragoda@gmail.com. his phone number is 0776685719. your in the web site web site's name is Idea Drive.This website provides many services to the client. These include website development, software development, mobile application development, graphic design, logo design, SEO service, video editing and digital marketing. web site name is. You should answer all the questions asked of you using these things",
+            "remember Answer all these as you write an assignment. Avoid behaving like an AI model. Write all the answers with the updated information just like an undergraduate student writing an assignment. Don't talk about how you write an assignment. Give only answers related to the assignment.",
         },
-        {
-          role: "model",
-          parts: "",
-        },
+        ...chatHistory,
       ],
     });
     try {
@@ -142,7 +140,7 @@ const Assignment = () => {
 
       setChatHistory([
         ...chatHistory,
-        { role: "user", parts: value },
+        { role: "user", parts: receivedValues.ai },
         { role: "model", parts: response.text() },
       ]);
 
@@ -301,7 +299,7 @@ const Assignment = () => {
               download === 1
                 ? "font-[hand1] w-[140mm] text-[#080077] bg-white"
                 : download === 2
-                ? "w-[140mm] text-[#000] bg-white  font-serif"
+                ? "w-[140mm] text-[#000] bg-white "
                 : ""
             }`}
             ref={reportTemplateRef}
